@@ -1,0 +1,531 @@
+import React, { useState, useMemo } from 'react';
+import { BookOpen, CheckCircle, XCircle, ArrowRight, RotateCcw, Award, ChevronRight, AlertCircle, Home } from 'lucide-react';
+
+// ==========================================
+// 題庫資料 (共 10 大類，150 題精選必考題)
+// ==========================================
+const CATEGORIES = [
+  "時態全集", "三大子句", "被動語態", "特殊動詞", "花費動詞", 
+  "情緒形容詞", "句型結構", "代名詞與介系詞", "比較級與最高級", "動名詞與不定詞"
+];
+
+const RAW_QUESTIONS = [
+  // 1. 時態全集 (現在/過去/未來、進行式、完成式)
+  { c: 0, q: "Listen! The birds ____ beautifully in the trees.", o: ["sing", "are singing", "sang", "have sung"], a: 1, e: "Listen! (聽！) 暗示動作正在發生，應搭配現在進行式 (are/is/am + V-ing)。" },
+  { c: 0, q: "I ____ my keys. I can't open the door now.", o: ["lose", "lost", "have lost", "was losing"], a: 2, e: "現在無法開門是「現在的結果」，表示過去發生的動作對現在造成影響，用現在完成式 (have + Vp.p.)。" },
+  { c: 0, q: "My brother ____ to Japan three times so far.", o: ["goes", "went", "has been", "has gone"], a: 2, e: "so far (到目前為止) 常搭配現在完成式。has been to 表「去過(已回來)」，has gone to 表「去了(未回來)」。" },
+  { c: 0, q: "By the time we got to the station, the train ____.", o: ["leaves", "left", "has left", "had left"], a: 3, e: "「我們到達車站」是過去式，火車在我們到達「之前」就開走了，過去的過去要用過去完成式 (had + Vp.p.)。" },
+  { c: 0, q: "What ____ you ____ at 8:00 last night?", o: ["do; do", "did; do", "were; doing", "are; doing"], a: 2, e: "at 8:00 last night (昨晚八點) 是一個明確的過去時間點，應使用過去進行式 (was/were + V-ing)。" },
+  { c: 0, q: "He ____ TV when the telephone rang.", o: ["watches", "watched", "was watching", "has watched"], a: 2, e: "電話響 (短暫動作) 的時候，他「正在」看電視 (持續動作)。持續動作被打斷用過去進行式。" },
+  { c: 0, q: "We ____ a picnic if the weather is fine tomorrow.", o: ["have", "had", "will have", "are having"], a: 2, e: "條件子句 (if...) 用現在式代替未來式，但主要子句仍須維持未來式 (will + V)。" },
+  { c: 0, q: "I haven't seen Mary since she ____ to Taipei.", o: ["moves", "moved", "will move", "has moved"], a: 1, e: "since (自從) + 過去簡單式的時間點或子句，主要子句用現在完成式。" },
+  { c: 0, q: "Look at those dark clouds! It ____ soon.", o: ["rains", "rained", "is going to rain", "has rained"], a: 2, e: "有跡象顯示即將發生的事 (烏雲密布)，通常使用 be going to 來表示未來。" },
+  { c: 0, q: "The Earth ____ around the Sun.", o: ["go", "goes", "went", "is going"], a: 1, e: "不變的真理或自然現象，永遠使用現在簡單式。" },
+  { c: 0, q: "I ____ English for five years.", o: ["study", "studied", "am studying", "have studied"], a: 3, e: "for + 一段時間 (five years)，常搭配現在完成式，表示從過去持續到現在的動作。" },
+  { c: 0, q: "While I ____ down the street, I met an old friend.", o: ["walk", "walked", "was walking", "have walked"], a: 2, e: "While 引導的子句通常表示「一段持續的時間」，在過去情境中常接過去進行式。" },
+  { c: 0, q: "The movie ____ before we bought the tickets.", o: ["begins", "began", "has begun", "had begun"], a: 3, e: "買票是過去式 (bought)，電影開始發生在買票之前，用過去完成式 (had + Vp.p.)。" },
+  { c: 0, q: "As soon as he ____, we will start the meeting.", o: ["arrives", "arrived", "will arrive", "is arriving"], a: 0, e: "As soon as 引導的時間副詞子句中，要用「現在式」代替未來式。" },
+  { c: 0, q: "They ____ good friends since childhood.", o: ["are", "were", "have been", "will be"], a: 2, e: "since childhood 表「自童年起一直到現在」，應搭配現在完成式 (have been)。" },
+  { c: 0, q: "I ____ this book yesterday.", o: ["read", "reads", "will read", "have read"], a: 0, e: "yesterday 是明確的過去時間，使用過去簡單式。read 的過去式拼法相同但發音不同。" },
+  { c: 0, q: "By next month, he ____ here for three years.", o: ["will work", "works", "is working", "will have worked"], a: 3, e: "By + 未來時間 (到未來某時為止)，常搭配未來完成式 (will have + Vp.p.)。" },
+  { c: 0, q: "Water ____ at 100 degrees Celsius.", o: ["boil", "boils", "boiled", "is boiling"], a: 1, e: "不變的真理或科學事實，永遠使用現在簡單式，Water 不可數視為單數。" },
+  { c: 0, q: "Where is Mom? She ____ to the supermarket.", o: ["has been", "has gone", "went", "is going"], a: 1, e: "has gone to 表「去了某地且還沒回來」，符合「問媽媽在哪」的情境。" },
+  { c: 0, q: "I will tell him the news when he ____ back.", o: ["comes", "will come", "came", "is coming"], a: 0, e: "when 引導的時間副詞子句中，要用「現在式」代替未來式。" },
+
+  // 2. 三大子句 (名詞子句、關係子句、副詞子句)
+  { c: 1, q: "I don't know ____.", o: ["where does he live", "where he lives", "he lives where", "where is he living"], a: 1, e: "名詞子句當受詞時，須使用直述句語序：疑問詞 + 主詞 + 動詞。" },
+  { c: 1, q: "The boy ____ is wearing a red shirt is my brother.", o: ["who", "which", "whom", "whose"], a: 0, e: "先行詞為人 (The boy)，且在關係子句中作主詞，關係代名詞用 who 或 that。" },
+  { c: 1, q: "This is the book ____ I bought yesterday.", o: ["who", "what", "which", "whose"], a: 2, e: "先行詞為物 (the book)，關係代名詞用 which 或 that。" },
+  { c: 1, q: "Do you know the girl ____ hair is long and curly?", o: ["who", "which", "that", "whose"], a: 3, e: "表示所有格「...的」，關係代名詞須用 whose (那個女孩的頭髮)。" },
+  { c: 1, q: "Please tell me ____.", o: ["what time is it", "what time it is", "it is what time", "what is the time"], a: 1, e: "間接問句/名詞子句須用直述句語序：疑問詞 (what time) + 主詞 (it) + 動詞 (is)。" },
+  { c: 1, q: "I will call you ____ I get home.", o: ["because", "although", "when", "so"], a: 2, e: "when (當...時) 引導時間副詞子句。句意：當我到家時我會打給你。" },
+  { c: 1, q: "____ it was raining heavily, they still went out.", o: ["Because", "Although", "But", "So"], a: 1, e: "Although (雖然) 引導讓步副詞子句。注意：Although 和 But 在英文中不能同時出現在同一個句子裡。" },
+  { c: 1, q: "She is the only person ____ can help you.", o: ["who", "which", "whom", "that"], a: 3, e: "當先行詞前有 the only, the same, 最高級或序數修飾時，關係代名詞強烈建議/必須使用 that。" },
+  { c: 1, q: "The problem is ____ we don't have enough money.", o: ["what", "which", "that", "where"], a: 2, e: "that 引導名詞子句當作主詞補語 (在 be 動詞之後)，that 無意義但不可省略。" },
+  { c: 1, q: "I am not sure ____ he will come to the party or not.", o: ["that", "whether", "weather", "if"], a: 1, e: "whether... or not 表「是否」，if 雖然也可以表是否，但通常不與 or not 直接連用，且 weather 是天氣。" },
+  { c: 1, q: "The man ____ you talked to is our new principal.", o: ["who", "which", "whom", "whose"], a: 2, e: "先行詞為人，且在關係子句中作受詞 (talked to him)，關代用 whom (口語也可用 who/that 或省略)。" },
+  { c: 1, q: "He didn't go to school today ____ he was sick.", o: ["so", "because", "although", "but"], a: 1, e: "because (因為) 表原因。Because 和 So 不能同時出現在一個句子裡。" },
+  { c: 1, q: "Do you remember the day ____ we first met?", o: ["which", "where", "when", "that"], a: 2, e: "先行詞為時間 (the day)，關係副詞用 when (= on which)。" },
+  { c: 1, q: "I think ____ learning English is important.", o: ["what", "which", "that", "this"], a: 2, e: "that 引導名詞子句當作 think 的受詞，這裡的 that 可以省略。" },
+  { c: 1, q: "Anyone ____ breaks the rule will be punished.", o: ["who", "which", "whom", "whose"], a: 0, e: "先行詞 Anyone 指人，在子句中作主詞，關代用 who。" },
+  { c: 1, q: "I don't know who ____.", o: ["is he", "he is", "does he be", "he does"], a: 1, e: "間接問句/名詞子句須用直述句語序：疑問詞 + 主詞 + 動詞。" },
+  { c: 1, q: "The man ____ lives next door is very friendly.", o: ["whom", "which", "who", "whose"], a: 2, e: "先行詞為人，且在關係子句中作主詞，關代用 who (或 that)。" },
+  { c: 1, q: "Is this the restaurant ____ we had dinner last week?", o: ["which", "that", "where", "when"], a: 2, e: "先行詞為地方，關係副詞用 where (= in which)。" },
+  { c: 1, q: "____ he is very old, he still goes swimming every day.", o: ["But", "Although", "Because", "So"], a: 1, e: "Although (雖然) 引導讓步副詞子句，語意：雖然他很老了，仍每天游泳。" },
+  { c: 1, q: "The house ____ roof is red belongs to my uncle.", o: ["who", "which", "that", "whose"], a: 3, e: "表示所有格「那個房子的(屋頂)」，關係代名詞須用 whose。" },
+
+  // 3. 被動語態
+  { c: 2, q: "English ____ in many countries.", o: ["speaks", "is speaking", "is spoken", "has spoken"], a: 2, e: "英文是被說的，故用被動語態 (be 動詞 + Vp.p.)，現在式用 is spoken。" },
+  { c: 2, q: "The window ____ by the boy yesterday.", o: ["breaks", "broke", "is broken", "was broken"], a: 3, e: "yesterday 提示過去式，窗戶是被打破的，故用過去簡單被動語態 was broken。" },
+  { c: 2, q: "My bike ____ tomorrow.", o: ["will repair", "will be repaired", "is repairing", "repairs"], a: 1, e: "tomorrow 提示未來式，腳踏車將被修理，助動詞被動語態為 (will be + Vp.p.)。" },
+  { c: 2, q: "The letter ____ already.", o: ["has sent", "was sent", "has been sent", "is sending"], a: 2, e: "already (已經) 常配完成式，信是被寄出的，現在完成式被動為 (have/has been + Vp.p.)。" },
+  { c: 2, q: "Must the work ____ today?", o: ["finish", "finishes", "finished", "be finished"], a: 3, e: "助動詞 (Must/Can/Should) 之後的被動語態要用原形 be + Vp.p.。" },
+  { c: 2, q: "He was made ____ the floor by his mother.", o: ["sweep", "to sweep", "sweeping", "swept"], a: 1, e: "使役動詞 make 在主動時接受詞接原形動詞，但變成「被動語態」時，必須加回 to，變成 to V。" },
+  { c: 2, q: "The cake ____ delicious.", o: ["is tasted", "tastes", "is tasting", "tasted"], a: 1, e: "連綴動詞 (taste, sound, look...) 沒有被動語態！直接用主動形式即可。" },
+  { c: 2, q: "A lot of trees ____ planted in our school every year.", o: ["are", "were", "will be", "have been"], a: 0, e: "every year 提示現在簡單式，複數主詞 trees 搭配 are + Vp.p.。" },
+  { c: 2, q: "The trash ____ taken out right now.", o: ["is", "is being", "has been", "was"], a: 1, e: "right now 提示現在進行式，現在進行式的被動語態為 (is/are/am + being + Vp.p.)。" },
+  { c: 2, q: "The baby is taken good care ____ by his grandmother.", o: ["for", "with", "of", "to"], a: 2, e: "片語動詞 take care of 變被動時，介系詞 of 必須保留，不可省略。" },
+  { c: 2, q: "The book was written ____ a famous author.", o: ["with", "by", "in", "from"], a: 1, e: "被動語態中，表示「被...人(執行者)」時，使用介系詞 by。" },
+  { c: 2, q: "My wallet ____ on my way home.", o: ["stole", "is stolen", "was stolen", "has stolen"], a: 2, e: "錢包是在回家的路上「被偷的」(過去發生的單一事件)，用過去簡單被動。" },
+  { c: 2, q: "This problem can ____ easily.", o: ["solve", "be solved", "is solved", "solving"], a: 1, e: "助動詞 can + be + Vp.p. 構成被動。" },
+  { c: 2, q: "Nothing ____ done to solve the problem yet.", o: ["has", "has been", "is", "was"], a: 1, e: "yet 提示現在完成式，Nothing 視為單數，且為被動，故用 has been done。" },
+  { c: 2, q: "The room ____ before the guests arrive.", o: ["will clean", "must be cleaned", "must clean", "cleaned"], a: 1, e: "房間「必須被清理」，助動詞 must + be + Vp.p.。" },
+  { c: 2, q: "These shoes ____ in Taiwan.", o: ["make", "made", "are made", "are making"], a: 2, e: "鞋子是「被製造」的，描述一般事實用現在簡單被動語態 (are made)。" },
+  { c: 2, q: "My car ____ right now.", o: ["washed", "is washing", "was washed", "is being washed"], a: 3, e: "right now 提示現在進行式，車子「正在被洗」，用 is being + Vp.p.。" },
+  { c: 2, q: "The homework ____ finished by tomorrow.", o: ["will", "will be", "is", "has been"], a: 1, e: "by tomorrow (到明天為止) 提示未來式，作業將會「被完成」，用 will be + Vp.p.。" },
+  { c: 2, q: "The little boy was seen ____ the store.", o: ["enter", "entered", "to enter", "entering"], a: 2, e: "感官動詞被動語態，後面的原形動詞要還原成不定詞 to V。" },
+  { c: 2, q: "All the tickets ____ out in ten minutes yesterday.", o: ["sell", "sold", "were sold", "are sold"], a: 2, e: "yesterday 提示過去式，票是「被賣光」的，用 were sold。" },
+
+  // 4. 特殊動詞 (感官、使役、連綴)
+  { c: 3, q: "I saw the boy ____ the street just now.", o: ["cross", "crossed", "to cross", "crosses"], a: 0, e: "感官動詞 (see/hear/watch) + 受詞 + 原形動詞 (強調事實/全程) 或 V-ing (強調正在進行)。選項中只有 cross。" },
+  { c: 3, q: "Mom makes me ____ my room every weekend.", o: ["clean", "to clean", "cleaning", "cleaned"], a: 0, e: "使役動詞 (make/have/let) + 受詞 + 原形動詞 (主動)。" },
+  { c: 3, q: "The medicine tastes ____.", o: ["terrible", "terribly", "badly", "well"], a: 0, e: "連綴動詞 (taste/smell/sound/look/feel) 後面必須接「形容詞」作為主詞補語。" },
+  { c: 3, q: "He had his car ____ yesterday.", o: ["wash", "to wash", "washing", "washed"], a: 3, e: "使役動詞 have + 物 (car) + Vp.p. (過去分詞)，表示讓某物「被」做..." },
+  { c: 3, q: "Let him ____ what he wants.", o: ["do", "does", "to do", "doing"], a: 0, e: "使役動詞 let + 受詞 + 原形動詞。" },
+  { c: 3, q: "The music sounds ____. I like it.", o: ["beautiful", "beautifully", "wonderfully", "badly"], a: 0, e: "連綴動詞 sound 後接形容詞。" },
+  { c: 3, q: "Did you hear someone ____ the piano in the next room?", o: ["play", "played", "to play", "plays"], a: 0, e: "感官動詞 hear + 受詞 + 原形動詞/V-ing。" },
+  { c: 3, q: "The story made us ____.", o: ["sadly", "sad", "to sad", "saddened"], a: 1, e: "make + 受詞 + 形容詞 (使...變得...)。sad 是形容詞。" },
+  { c: 3, q: "You look ____ in that dress.", o: ["beautifully", "beautiful", "beauty", "to be beautiful"], a: 1, e: "連綴動詞 look 後接形容詞 beautiful。" },
+  { c: 3, q: "The teacher got the students ____ homework on time.", o: ["finish", "to finish", "finishing", "finished"], a: 1, e: "get 雖然有使役的意味，但用法不同：get + 人 + to V (要求某人去做某事)。" },
+  { c: 3, q: "I smelled something ____ in the kitchen.", o: ["burn", "burning", "burned", "to burn"], a: 1, e: "感官動詞 smell + 受詞 + V-ing (強調當下正在燃燒的狀態)。" },
+  { c: 3, q: "He felt his heart ____ fast.", o: ["beat", "beaten", "to beat", "beats"], a: 0, e: "感官動詞 feel + 受詞 + 原形動詞/V-ing。" },
+  { c: 3, q: "The weather is getting ____.", o: ["cold and cold", "colder and colder", "more and more cold", "coldly"], a: 1, e: "get/become (連綴動詞表變化) + 比較級 and 比較級，表示「越來越...」。" },
+  { c: 3, q: "Don't let the dog ____ away.", o: ["run", "to run", "running", "ran"], a: 0, e: "let + 受詞 + 原形動詞。" },
+  { c: 3, q: "She had her hair ____ this morning.", o: ["cut", "to cut", "cutting", "cuts"], a: 0, e: "have + 物 (hair) + Vp.p. (頭髮是被剪的，cut的過去分詞還是cut)。" },
+  { c: 3, q: "I had my computer ____ yesterday.", o: ["fix", "fixed", "fixing", "to fix"], a: 1, e: "have + 物 + Vp.p.：使役動詞用法，表示讓某物「被」處理。" },
+  { c: 3, q: "The pizza smells so ____. I want a bite.", o: ["good", "well", "badly", "goodly"], a: 0, e: "連綴動詞 smell 後面必須接形容詞 (good)。well 當形容詞只有「健康的」之意。" },
+  { c: 3, q: "Did you notice the earth ____ just a moment ago?", o: ["shook", "to shake", "shaking", "shaken"], a: 2, e: "notice (注意到) 也是感官動詞，後接原形動詞或 V-ing (shaking)。" },
+  { c: 3, q: "Please keep the door ____.", o: ["close", "closing", "closed", "to close"], a: 2, e: "keep + 受詞 + 受詞補語。門是被關著的狀態，用過去分詞 closed。" },
+  { c: 3, q: "The news made everyone ____.", o: ["happily", "happiness", "happy", "to be happy"], a: 2, e: "make + 受詞 + 形容詞 (使...變得...)。happy 是形容詞。" },
+
+  // 5. 花費動詞 (spend, take, cost, pay)
+  { c: 4, q: "It ____ me two hours to do the homework.", o: ["spent", "took", "cost", "paid"], a: 1, e: "It takes/took + 人 + 時間 + to V。主詞為虛主詞 It 時，花費時間用 take。" },
+  { c: 4, q: "I ____ $500 on this shirt.", o: ["spent", "took", "cost", "paid"], a: 0, e: "人 + spend + 金錢/時間 + on 物品 / V-ing。主詞是人，且後接 on，用 spend。" },
+  { c: 4, q: "The new car ____ him a lot of money.", o: ["spent", "took", "cost", "paid"], a: 2, e: "物 + cost (+人) + 金錢。主詞是事物，花費金錢用 cost。" },
+  { c: 4, q: "She ____ $200 for the concert ticket.", o: ["spent", "took", "cost", "paid"], a: 3, e: "人 + pay + 金錢 + for 物品。主詞是人，且後接 for，用 pay。" },
+  { c: 4, q: "____ takes patience to learn a new language.", o: ["It", "That", "This", "He"], a: 0, e: "It takes + 抽象名詞 (patience) + to V。It 為虛主詞。" },
+  { c: 4, q: "He spent all weekend ____ video games.", o: ["to play", "play", "playing", "played"], a: 2, e: "spend + 時間 + (in) V-ing。後面必須接動名詞。" },
+  { c: 4, q: "How much did you ____ for that book?", o: ["spend", "take", "cost", "pay"], a: 3, e: "搭配介系詞 for，且主詞是 you (人)，用 pay。" },
+  { c: 4, q: "How much did that book ____ you?", o: ["spend", "take", "cost", "pay"], a: 2, e: "主詞是 that book (物)，問花多少錢，用 cost。" },
+  { c: 4, q: "How long does it ____ to walk to the station?", o: ["spend", "take", "cost", "pay"], a: 1, e: "主詞是 it，問花費多少時間，用 take。" },
+  { c: 4, q: "I paid in cash ____ the meal.", o: ["on", "for", "to", "with"], a: 1, e: "pay for something (為某物付款)。" },
+  { c: 4, q: "Walking to school ____ me 15 minutes.", o: ["spends", "takes", "costs", "pays"], a: 1, e: "動名詞 (Walking) 當主詞視為事物，花費時間用 takes。" },
+  { c: 4, q: "The watch ____ $1,000.", o: ["spends", "takes", "costs", "pays"], a: 2, e: "主詞是 The watch (物)，花費金錢用 costs。" },
+  { c: 4, q: "They spent a lot of money ____ fixing the roof.", o: ["to", "for", "on", "in"], a: 2, e: "spend money on + N/V-ing (將錢花在...上)。" },
+  { c: 4, q: "It ____ courage to tell the truth.", o: ["spends", "takes", "costs", "pays"], a: 1, e: "It takes + 特質/心力 + to V。表示「需要...」。" },
+  { c: 4, q: "She didn't ____ much time reading the report.", o: ["spend", "take", "cost", "pay"], a: 0, e: "主詞是 She (人)，花費時間且後面接 V-ing (reading)，用 spend。" },
+  { c: 4, q: "I ____ two hours waiting for the bus.", o: ["spent", "took", "cost", "paid"], a: 0, e: "主詞是人，且後接時間 + V-ing，使用 spend。" },
+  { c: 4, q: "How much did it ____ to fix the bike?", o: ["spend", "take", "cost", "pay"], a: 2, e: "主詞是 it (虛主詞)，問花多少錢，使用 cost。" },
+  { c: 4, q: "This jacket ____ me $2,000.", o: ["spent", "took", "cost", "paid"], a: 2, e: "主詞是物 (This jacket)，花費某人多少金錢用 cost。" },
+  { c: 4, q: "It ____ me an hour to clean the room.", o: ["spent", "took", "cost", "paid"], a: 1, e: "It takes + 人 + 時間 + to V。花時間用 take。" },
+  { c: 4, q: "I ____ for the coffee with my credit card.", o: ["spent", "took", "cost", "paid"], a: 3, e: "主詞是人，搭配介系詞 for (為...付款)，用 pay。" },
+
+  // 6. 情緒形容詞
+  { c: 5, q: "The movie is very ____. I want to watch it again.", o: ["interest", "interested", "interesting", "interests"], a: 2, e: "修飾事物 (The movie) 令人感到有趣，用 V-ing (interesting)。" },
+  { c: 5, q: "I am ____ in English history.", o: ["interest", "interested", "interesting", "interests"], a: 1, e: "表示人本身感到...，用 V-ed。be interested in 為固定用法。" },
+  { c: 5, q: "The news was ____ to all of us.", o: ["surprised", "surprising", "surprise", "surprises"], a: 1, e: "消息 (The news) 令人驚訝的，修飾事物用 V-ing。" },
+  { c: 5, q: "We were ____ at the bad news.", o: ["surprised", "surprising", "surprise", "surprises"], a: 0, e: "人 (We) 感到驚訝，用 V-ed。be surprised at 為固定用法。" },
+  { c: 5, q: "He felt ____ because there was nothing to do.", o: ["bored", "boring", "bore", "bores"], a: 0, e: "人感到無聊，用 V-ed (bored)。" },
+  { c: 5, q: "This book is so ____ that I fall asleep.", o: ["bored", "boring", "bore", "bores"], a: 1, e: "書令人感到無聊，修飾事物用 V-ing (boring)。" },
+  { c: 5, q: "Are you ____ of the dark?", o: ["scare", "scaring", "scared", "scares"], a: 2, e: "人感到害怕，用 V-ed。be scared of (害怕...)。" },
+  { c: 5, q: "The long journey was very ____.", o: ["tired", "tiring", "tire", "tires"], a: 1, e: "旅程 (事物) 令人疲倦，用 V-ing (tiring)。" },
+  { c: 5, q: "I am ____ with my current job.", o: ["satisfied", "satisfying", "satisfy", "satisfies"], a: 0, e: "人感到滿意，用 V-ed。be satisfied with (對...滿意)。" },
+  { c: 5, q: "The baseball game was ____. Everyone shouted excitedly.", o: ["excited", "exciting", "excite", "excites"], a: 1, e: "比賽 (事物) 令人興奮，用 V-ing (exciting)。" },
+  { c: 5, q: "She is ____ about her upcoming trip.", o: ["excited", "exciting", "excite", "excites"], a: 0, e: "人對...感到興奮，用 V-ed。be excited about。" },
+  { c: 5, q: "It is ____ to see you again.", o: ["pleased", "pleasing", "please", "pleases"], a: 1, e: "It 是虛主詞代替後面的 to see you (事物)，事物令人愉悅用 pleasing。" },
+  { c: 5, q: "His answer was ____. I still don't understand.", o: ["confused", "confusing", "confuse", "confuses"], a: 1, e: "答案 (事物) 令人困惑，用 V-ing。" },
+  { c: 5, q: "She looked ____ when she heard the results.", o: ["disappointed", "disappointing", "disappoint", "disappoints"], a: 0, e: "人感到失望，用 V-ed。" },
+  { c: 5, q: "That is a ____ story.", o: ["touched", "touching", "touch", "touches"], a: 1, e: "故事 (事物) 令人感動，用 V-ing (touching)。" },
+  { c: 5, q: "The ghost story is very ____.", o: ["scare", "scaring", "scared", "scary"], a: 3, e: "形容事物本身令人害怕，常用 scary (形容詞)。" },
+  { c: 5, q: "I am ____ of making mistakes.", o: ["terrified", "terrifying", "terrify", "terrifies"], a: 0, e: "人感到害怕，用 V-ed (terrified)。" },
+  { c: 5, q: "The ending of the movie was ____.", o: ["surprised", "surprising", "surprise", "surprises"], a: 1, e: "電影結局(事物)令人驚訝，用 V-ing (surprising)。" },
+  { c: 5, q: "He is always ____ about everything.", o: ["worried", "worrying", "worry", "worries"], a: 0, e: "人感到擔憂，用 V-ed。be worried about... (擔心...)。" },
+  { c: 5, q: "Are you ____ with the result?", o: ["satisfied", "satisfying", "satisfy", "satisfies"], a: 0, e: "人感到滿意，用 V-ed。be satisfied with... (對...感到滿意)。" },
+
+  // 7. 句型結構 (附加問句、附和句)
+  { c: 6, q: "You are a student, ____?", o: ["are you", "aren't you", "do you", "don't you"], a: 1, e: "附加問句：前肯定，後否定。be 動詞直接倒裝。" },
+  { c: 6, q: "He didn't go to school, ____?", o: ["did he", "didn't he", "does he", "doesn't he"], a: 0, e: "附加問句：前否定，後肯定。用助動詞 did。" },
+  { c: 6, q: "Open the door, ____?", o: ["do you", "don't you", "will you", "shall we"], a: 2, e: "祈使句的附加問句，不論肯定或否定，一律用 will you? (Let's 除外)。" },
+  { c: 6, q: "Let's go to the movies, ____?", o: ["will you", "shall we", "don't we", "do we"], a: 1, e: "Let's ... 開頭的祈使句，附加問句一律用 shall we?。" },
+  { c: 6, q: "There is an apple on the table, ____?", o: ["is it", "isn't it", "is there", "isn't there"], a: 3, e: "There is/are 句型，附加問句的主詞要沿用 there。" },
+  { c: 6, q: "I like apples. - ____", o: ["So do I.", "Neither do I.", "So am I.", "Neither am I."], a: 0, e: "附和句：肯定附和用 So。前面是一般動詞 like，助動詞用 do。So do I (我也是)。" },
+  { c: 6, q: "He hasn't finished it. - ____", o: ["So have I.", "Neither have I.", "Neither do I.", "So do I."], a: 1, e: "附和句：否定附和用 Neither。前面是完成式 haven't，沿用助動詞 have。Neither have I (我也還沒)。" },
+  { c: 6, q: "She can play the piano, and ____ he.", o: ["so can", "neither can", "so does", "neither does"], a: 0, e: "肯定附和，前面有 can，後面沿用 can。so can he。" },
+  { c: 6, q: "Nobody called me, ____?", o: ["did they", "didn't they", "did he", "didn't he"], a: 0, e: "Nobody 表否定，後用肯定。Nobody 的代名詞通常用 they。故為 did they?" },
+  { c: 6, q: "Tom seldom goes to bed late, ____?", o: ["does he", "doesn't he", "is he", "isn't he"], a: 0, e: "seldom (很少) 是隱性否定字，所以前面算否定句，後面附加問句要用肯定 does he。" },
+  { c: 6, q: "I am right, ____?", o: ["am not I", "aren't I", "amn't I", "am I"], a: 1, e: "I am ... 的否定附加問句，習慣上用 aren't I? 而不是 am not I?。" },
+  { c: 6, q: "He has to work today, ____?", o: ["hasn't he", "has he", "doesn't he", "does he"], a: 2, e: "has to (必須) 是一般動詞片語，否定要用助動詞 doesn't。" },
+  { c: 6, q: "They have a lot of money, ____?", o: ["haven't they", "don't they", "do they", "have they"], a: 1, e: "have 在這裡作一般動詞「擁有」，附加問句要用助動詞 don't/doesn't/didn't。" },
+  { c: 6, q: "I don't like math. - ____", o: ["Me too.", "Me either.", "Me neither.", "So do I."], a: 2, e: "口語中，否定附和可用 Me neither. (Me either 也是常見口語，但正規文法常選 Me neither / Neither do I)。" },
+  { c: 6, q: "Nothing is impossible, ____?", o: ["is it", "isn't it", "are they", "aren't they"], a: 0, e: "Nothing 是否定字且視為單數事物，代名詞用 it，後接肯定 is it。" },
+  { c: 6, q: "You have finished your homework, ____?", o: ["have you", "haven't you", "do you", "don't you"], a: 1, e: "前面是現在完成式 (have + Vp.p.)，附加問句沿用助動詞 have 的否定。" },
+  { c: 6, q: "He never tells lies, ____?", o: ["does he", "doesn't he", "is he", "isn't he"], a: 0, e: "never 是否定字，前半句算否定，附加問句要用肯定 (does he)。" },
+  { c: 6, q: "Tom didn't go to the party, and ____.", o: ["neither did Mary", "so did Mary", "neither Mary did", "so Mary did"], a: 0, e: "否定附和句用 neither + 倒裝 (助動詞 + 主詞)。" },
+  { c: 6, q: "Don't make any noise, ____?", o: ["do you", "don't you", "will you", "shall we"], a: 2, e: "否定祈使句的附加問句一律用 will you?。" },
+  { c: 6, q: "I can speak English, and my sister ____, too.", o: ["is", "does", "can", "has"], a: 2, e: "前面有助動詞 can，後面附和句也要沿用 can。" },
+
+  // 8. 代名詞與介系詞
+  { c: 7, q: "I have two brothers. One is a doctor, and ____ is a teacher.", o: ["another", "other", "the other", "others"], a: 2, e: "兩者之中的「另一個」 (限定最後一個)，用 the other。" },
+  { c: 7, q: "Some students like math, and ____ like English.", o: ["other", "the other", "others", "another"], a: 2, e: "Some... others... (一些人... 其他一些人...)，無特定範圍的其餘複數用 others。" },
+  { c: 7, q: "I don't like this shirt. Please show me ____.", o: ["another", "other", "the other", "others"], a: 0, e: "another 表示「三者或以上中的任意另一個」。" },
+  { c: 7, q: "He was born ____ May.", o: ["in", "on", "at", "of"], a: 0, e: "在某個月分、年份、季節，介系詞用 in。" },
+  { c: 7, q: "The meeting is ____ Monday morning.", o: ["in", "on", "at", "of"], a: 1, e: "指定某天的早中晚 (Monday morning)，介系詞用 on。" },
+  { c: 7, q: "Look ____ the blackboard.", o: ["in", "on", "at", "to"], a: 2, e: "look at + 目標 (注視著...)。" },
+  { c: 7, q: "She is good ____ playing tennis.", o: ["in", "on", "at", "with"], a: 2, e: "be good at + N/V-ing (擅長於...)。" },
+  { c: 7, q: "My birthday is ____ October 10th.", o: ["in", "on", "at", "to"], a: 1, e: "特定的日期 (幾月幾日)，介系詞用 on。" },
+  { c: 7, q: "Both of my parents are teachers. ____ of them work hard.", o: ["All", "Both", "Each", "Two"], a: 1, e: "Both 指「兩者都...」。" },
+  { c: 7, q: "____ of the students in my class has a dictionary.", o: ["All", "Both", "Each", "Some"], a: 2, e: "Each (每一個) 視為單數主詞，故動詞用 has。" },
+  { c: 7, q: "We arrive ____ the airport at 7 AM.", o: ["in", "on", "at", "to"], a: 2, e: "arrive at + 小地方 (車站、機場)。" },
+  { c: 7, q: "He is sitting ____ me and Tom.", o: ["among", "between", "in", "with"], a: 1, e: "between A and B (在兩者之間)。among 用於三者或以上之間。" },
+  { c: 7, q: "Of all the boys, Tom is ____.", o: ["tall", "taller", "the tallest", "tallest"], a: 2, e: "Of all... (在所有人之中) 提示最高級，須加 the + -est。" }, // Note: slightly overlaps with C9, but valid
+  { c: 7, q: "I want to buy a pen. Do you have ____?", o: ["it", "one", "them", "ones"], a: 1, e: "one 代替前面提過的同類但非同一個單數物品；it 代替同一個物品。" },
+  { c: 7, q: "Thanks ____ your help.", o: ["for", "to", "with", "of"], a: 0, e: "Thank someone for something (因為某事而感謝某人)。" },
+  { c: 7, q: "There are three apples. One is red, another is green, and ____ is yellow.", o: ["other", "the other", "others", "the others"], a: 1, e: "三者中的最後一個 (限定範圍的剩下一個)，用 the other。" },
+  { c: 7, q: "We usually go to school ____ bus.", o: ["in", "on", "by", "with"], a: 2, e: "搭乘交通工具，介系詞用 by (by bus/train/car/boat)。" },
+  { c: 7, q: "She has two cats. ____ of them are very cute.", o: ["All", "Both", "Some", "Each"], a: 1, e: "兩者都...，代名詞用 Both。" },
+  { c: 7, q: "He put the book ____ the desk.", o: ["in", "on", "at", "to"], a: 1, e: "放在桌子「上面」表面接觸，介系詞用 on。" },
+  { c: 7, q: "Could you pass the salt ____ me?", o: ["for", "to", "with", "on"], a: 1, e: "pass something to someone (把某物遞給某人)。" },
+
+  // 9. 比較級與最高級
+  { c: 8, q: "Tom is ____ than his brother.", o: ["tall", "taller", "the tallest", "more tall"], a: 1, e: "看到 than 要用比較級。tall 的比較級是 taller。" },
+  { c: 8, q: "This is ____ book I have ever read.", o: ["interesting", "more interesting", "the most interesting", "most interesting"], a: 2, e: "I have ever read (我讀過之中) 提示最高級範圍。the most + 多音節形容詞。" },
+  { c: 8, q: "English is as ____ as Math.", o: ["important", "more important", "most important", "importantly"], a: 0, e: "as + 原級形容詞/副詞 + as (和...一樣)。" },
+  { c: 8, q: "He runs ____ of all the students.", o: ["fast", "faster", "fastest", "the fastest"], a: 3, e: "of all 提示最高級，副詞最高級 the fastest (the 常常可省略，但有 the 最完整)。" },
+  { c: 8, q: "It's getting ____ and ____.", o: ["dark; dark", "darker; darker", "more dark; more dark", "darkest; darkest"], a: 1, e: "比較級 and 比較級 表「越來越...」。" },
+  { c: 8, q: "She is much ____ today.", o: ["good", "better", "best", "the best"], a: 1, e: "much 可以用來修飾比較級，加強語氣 (好多了)。good 的比較級是 better。" },
+  { c: 8, q: "Which is ____, the sun or the moon?", o: ["big", "bigger", "the biggest", "biggest"], a: 1, e: "兩者 (the sun or the moon) 做比較，用比較級 bigger。" },
+  { c: 8, q: "He is ____ boy in his class.", o: ["taller", "the taller", "tallest", "the tallest"], a: 3, e: "in his class 表群體範圍，用最高級 the tallest。" },
+  { c: 8, q: "This question is less ____ than that one.", o: ["difficult", "more difficult", "most difficult", "difficulty"], a: 0, e: "less + 原級形容詞 + than，表示「較不...」。" },
+  { c: 8, q: "The ____ you study, the ____ grades you will get.", o: ["hard; good", "harder; better", "hardest; best", "more hard; more good"], a: 1, e: "The 比較級..., the 比較級... (越...，就越...)。" },
+  { c: 8, q: "Taipei 101 is one of ____ buildings in the world.", o: ["tall", "taller", "the tallest", "tallest"], a: 2, e: "one of the + 最高級 + 複數名詞 (最...的...之一)。" },
+  { c: 8, q: "Of the two brothers, John is ____.", o: ["smart", "smarter", "the smarter", "the smartest"], a: 2, e: "Of the two... (兩者之中) 是特殊用法，比較級前要加 the (the smarter)。" },
+  { c: 8, q: "She has ____ money than I do.", o: ["few", "fewer", "little", "less"], a: 3, e: "money 是不可數名詞，little 的比較級是 less。" },
+  { c: 8, q: "He runs as ____ as a deer.", o: ["fast", "fastly", "faster", "fastest"], a: 0, e: "as + 原級 + as。fast 本身就是副詞，沒有 fastly 這個字。" },
+  { c: 8, q: "This movie is even ____ than the last one.", o: ["bad", "badder", "worse", "worst"], a: 2, e: "even (甚至) 修飾比較級，bad 的比較級是不規則變化 worse。" },
+  { c: 8, q: "My brother is two years ____ than me.", o: ["old", "older", "oldest", "elder"], a: 1, e: "看到 than 用比較級。older 是一般比較級；elder 通常只作形容詞不接 than。" },
+  { c: 8, q: "Who is ____, Mary or Jane?", o: ["beautiful", "more beautiful", "most beautiful", "the most beautiful"], a: 1, e: "兩者做比較，用比較級 more beautiful。" },
+  { c: 8, q: "This is ____ movie I have ever seen.", o: ["good", "better", "best", "the best"], a: 3, e: "I have ever seen (我看過之中) 提示最高級，用 the best。" },
+  { c: 8, q: "She works ____ of all the students in her class.", o: ["hard", "harder", "hardest", "the hardest"], a: 3, e: "of all... 提示最高級。副詞的最高級 (the hardest)。" },
+  { c: 8, q: "The weather is getting ____ and hotter.", o: ["hot", "hotter", "hottest", "more hot"], a: 1, e: "比較級 and 比較級 表「越來越...」。hotter and hotter。" },
+
+  // 10. 動名詞與不定詞
+  { c: 9, q: "Remember ____ the door when you leave.", o: ["lock", "locking", "to lock", "locked"], a: 2, e: "remember to V (記得「要」去做... / 尚未做)。" },
+  { c: 9, q: "I remember ____ him before, but I forgot his name.", o: ["meet", "meeting", "to meet", "met"], a: 1, e: "remember V-ing (記得「曾經」做過... / 已做過)。" },
+  { c: 9, q: "He stopped ____ a cigarette because he was tired.", o: ["smoke", "smoking", "to smoke", "smoked"], a: 2, e: "stop to V (停下原本的事，去從事另一個動作)。停下來去抽菸。" },
+  { c: 9, q: "He stopped ____ a cigarette because it's bad for health.", o: ["smoke", "smoking", "to smoke", "smoked"], a: 1, e: "stop V-ing (停止正在做的動作)。戒菸 / 停止抽菸。" },
+  { c: 9, q: "Would you mind ____ the window?", o: ["open", "opening", "to open", "opened"], a: 1, e: "mind (介意) 後面固定接 V-ing 動名詞。" },
+  { c: 9, q: "I enjoy ____ to music in my free time.", o: ["listen", "listening", "to listen", "listened"], a: 1, e: "enjoy 後面固定接 V-ing 動名詞。" },
+  { c: 9, q: "She decided ____ a new computer.", o: ["buy", "buying", "to buy", "bought"], a: 2, e: "decide (決定) 後面接 to V 不定詞。" },
+  { c: 9, q: "____ early is good for your health.", o: ["Get up", "Getting up", "Got up", "Get"], a: 1, e: "動名詞 (Getting up) 可當作句子的主詞。" },
+  { c: 9, q: "I am looking forward to ____ you.", o: ["see", "seeing", "saw", "be seen"], a: 1, e: "look forward to 的 to 是介系詞，後面必須接 V-ing。" },
+  { c: 9, q: "He gave up ____ years ago.", o: ["smoke", "smoking", "to smoke", "smoked"], a: 1, e: "give up (放棄) 的 up 是介系詞，後面接 V-ing。" },
+  { c: 9, q: "I finished ____ the report yesterday.", o: ["write", "writing", "to write", "written"], a: 1, e: "finish 後面固定接 V-ing 動名詞。" },
+  { c: 9, q: "Thank you for ____ me with my homework.", o: ["help", "helping", "to help", "helped"], a: 1, e: "for 是介系詞，後面遇到動詞要加 V-ing。" },
+  { c: 9, q: "He forgot ____ the door, so the house was broken into.", o: ["lock", "locking", "to lock", "locked"], a: 2, e: "forgot to V (忘記要去.../未做)。門沒鎖導致被闖空門。" },
+  { c: 9, q: "I enjoy ____ basketball with my friends.", o: ["play", "playing", "to play", "played"], a: 1, e: "enjoy 後面固定接 V-ing 動名詞。" },
+  { c: 9, q: "____ is believing.", o: ["See", "Seeing", "Saw", "Seen"], a: 1, e: "動名詞 (Seeing) 可以當作句子的主詞。諺語：眼見為憑。" }
+];
+
+export default function App() {
+  const [gameState, setGameState] = useState('home'); // 'home', 'quiz', 'result'
+  const [currentQuestions, setCurrentQuestions] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [score, setScore] = useState(0);
+  const [userHistory, setUserHistory] = useState([]); 
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [isAnswered, setIsAnswered] = useState(false);
+  const [selectedCategoryTitle, setSelectedCategoryTitle] = useState("");
+
+  // 開始測驗
+  const startQuiz = (categoryIndex) => {
+    let quizSet = [];
+    if (categoryIndex === 'all') {
+      // 綜合測驗：隨機挑選 20 題
+      const shuffled = [...RAW_QUESTIONS].sort(() => 0.5 - Math.random());
+      quizSet = shuffled.slice(0, 20);
+      setSelectedCategoryTitle("綜合隨機特訓 (20題)");
+    } else {
+      // 單元測驗：該單元全部 15 題
+      quizSet = RAW_QUESTIONS.filter(q => q.c === categoryIndex);
+      setSelectedCategoryTitle(`${CATEGORIES[categoryIndex]} 特訓`);
+    }
+    
+    setCurrentQuestions(quizSet);
+    setCurrentIndex(0);
+    setScore(0);
+    setUserHistory([]);
+    setSelectedOption(null);
+    setIsAnswered(false);
+    setGameState('quiz');
+  };
+
+  const handleSelectOption = (index) => {
+    if (isAnswered) return;
+    setSelectedOption(index);
+    setIsAnswered(true);
+    
+    const currentQ = currentQuestions[currentIndex];
+    const isCorrect = index === currentQ.a;
+    
+    if (isCorrect) setScore(prev => prev + 1);
+    
+    setUserHistory(prev => [...prev, {
+      question: currentQ.q,
+      options: currentQ.o,
+      correctAnswer: currentQ.a,
+      userAnswer: index,
+      explanation: currentQ.e,
+      categoryName: CATEGORIES[currentQ.c]
+    }]);
+  };
+
+  const nextQuestion = () => {
+    if (currentIndex + 1 < currentQuestions.length) {
+      setCurrentIndex(prev => prev + 1);
+      setSelectedOption(null);
+      setIsAnswered(false);
+    } else {
+      setGameState('result');
+    }
+  };
+
+  // 畫面 1: 首頁 (選擇單元)
+  if (gameState === 'home') {
+    return (
+      <div className="min-h-screen bg-slate-50 text-slate-800 font-sans p-4 md:p-8">
+        <div className="max-w-4xl mx-auto">
+          <header className="mb-10 text-center">
+            <h1 className="text-3xl md:text-4xl font-bold text-indigo-700 mb-3 flex items-center justify-center gap-3">
+              <BookOpen size={36} />
+              國中英文文法特訓系統
+            </h1>
+            <p className="text-slate-500">涵蓋 B1~B6 必考核心文法，共 200 題精選題庫</p>
+          </header>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div 
+              onClick={() => startQuiz('all')}
+              className="col-span-1 md:col-span-2 lg:col-span-3 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl p-6 text-white cursor-pointer shadow-lg hover:shadow-xl transition-transform hover:-translate-y-1"
+            >
+              <h2 className="text-2xl font-bold mb-2 flex items-center gap-2">
+                <Award /> 綜合隨機測驗 (20題)
+              </h2>
+              <p className="opacity-90">從所有單元中隨機挑選 20 題，檢驗你的總體文法實力！</p>
+            </div>
+
+            {CATEGORIES.map((cat, idx) => (
+              <div 
+                key={idx} 
+                onClick={() => startQuiz(idx)}
+                className="bg-white rounded-xl p-5 border border-slate-200 shadow-sm hover:shadow-md cursor-pointer transition-all hover:border-indigo-300 group"
+              >
+                <div className="flex justify-between items-center mb-2">
+                  <h3 className="font-bold text-lg text-slate-700 group-hover:text-indigo-600 transition-colors">{cat}</h3>
+                  <span className="bg-indigo-100 text-indigo-800 text-xs font-semibold px-2 py-1 rounded-full">
+                    20 題
+                  </span>
+                </div>
+                <div className="flex items-center text-sm text-slate-500 mt-4 group-hover:text-indigo-500 transition-colors">
+                  開始練習 <ChevronRight size={16} className="ml-1" />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // 畫面 2: 測驗中
+  if (gameState === 'quiz') {
+    const currentQ = currentQuestions[currentIndex];
+    const progress = ((currentIndex) / currentQuestions.length) * 100;
+
+    return (
+      <div className="min-h-screen bg-slate-50 p-4 flex flex-col items-center pt-10 md:pt-20">
+        <div className="w-full max-w-2xl">
+          {/* Header & Progress */}
+          <div className="flex justify-between items-center mb-4">
+            <button onClick={() => setGameState('home')} className="text-slate-500 hover:text-indigo-600 flex items-center text-sm font-medium transition-colors">
+              <Home size={16} className="mr-1" /> 回首頁
+            </button>
+            <span className="text-sm font-bold text-indigo-600 bg-indigo-100 px-3 py-1 rounded-full">
+              {selectedCategoryTitle}
+            </span>
+            <span className="text-sm font-medium text-slate-500">
+              {currentIndex + 1} / {currentQuestions.length}
+            </span>
+          </div>
+          
+          <div className="w-full bg-slate-200 rounded-full h-2.5 mb-8 overflow-hidden">
+            <div className="bg-indigo-600 h-2.5 rounded-full transition-all duration-500" style={{ width: `${progress}%` }}></div>
+          </div>
+
+          {/* Question Card */}
+          <div className="bg-white rounded-2xl shadow-lg p-6 md:p-10 border border-slate-100">
+            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 block">
+              {CATEGORIES[currentQ.c]}
+            </span>
+            <h2 className="text-xl md:text-2xl font-bold text-slate-800 mb-8 leading-relaxed">
+              {currentQ.q}
+            </h2>
+
+            <div className="space-y-3">
+              {currentQ.o.map((opt, idx) => {
+                let btnStyle = "bg-slate-50 border-slate-200 text-slate-700 hover:bg-indigo-50 hover:border-indigo-300";
+                
+                if (isAnswered) {
+                  if (idx === currentQ.a) {
+                    btnStyle = "bg-emerald-50 border-emerald-500 text-emerald-700"; // 正確答案顯示綠色
+                  } else if (idx === selectedOption) {
+                    btnStyle = "bg-rose-50 border-rose-500 text-rose-700"; // 選錯的顯示紅色
+                  } else {
+                    btnStyle = "bg-slate-50 border-slate-200 text-slate-400 opacity-60"; // 其他選項淡化
+                  }
+                }
+
+                return (
+                  <button
+                    key={idx}
+                    onClick={() => handleSelectOption(idx)}
+                    disabled={isAnswered}
+                    className={`w-full text-left p-4 rounded-xl border-2 font-medium transition-all duration-200 flex justify-between items-center ${btnStyle}`}
+                  >
+                    <span>{String.fromCharCode(65 + idx)}. {opt}</span>
+                    {isAnswered && idx === currentQ.a && <CheckCircle className="text-emerald-500" size={20} />}
+                    {isAnswered && idx === selectedOption && idx !== currentQ.a && <XCircle className="text-rose-500" size={20} />}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Explanation & Next Button */}
+            {isAnswered && (
+              <div className="mt-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <div className={`p-5 rounded-xl border ${selectedOption === currentQ.a ? 'bg-emerald-50 border-emerald-200' : 'bg-rose-50 border-rose-200'}`}>
+                  <h3 className={`font-bold flex items-center gap-2 mb-2 ${selectedOption === currentQ.a ? 'text-emerald-700' : 'text-rose-700'}`}>
+                    {selectedOption === currentQ.a ? <CheckCircle size={20} /> : <AlertCircle size={20} />}
+                    {selectedOption === currentQ.a ? '答對了！' : '答錯了！'}
+                  </h3>
+                  <p className="text-slate-700 text-sm leading-relaxed">
+                    <span className="font-bold mr-2">解析：</span>{currentQ.e}
+                  </p>
+                </div>
+                
+                <button
+                  onClick={nextQuestion}
+                  className="mt-6 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-6 rounded-xl flex items-center justify-center gap-2 transition-colors shadow-md hover:shadow-lg"
+                >
+                  {currentIndex + 1 === currentQuestions.length ? '查看測驗結果' : '下一題'} <ArrowRight size={20} />
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // 畫面 3: 測驗結果
+  if (gameState === 'result') {
+    const percentage = Math.round((score / currentQuestions.length) * 100);
+    const incorrectAnswers = userHistory.filter(h => h.userAnswer !== h.correctAnswer);
+
+    return (
+      <div className="min-h-screen bg-slate-50 p-4 py-10 md:py-16">
+        <div className="max-w-3xl mx-auto">
+          {/* Score Card */}
+          <div className="bg-white rounded-3xl shadow-xl overflow-hidden mb-8 text-center border border-slate-100">
+            <div className="bg-gradient-to-r from-indigo-500 to-purple-600 p-8 text-white">
+              <h2 className="text-2xl font-bold mb-2">測驗完成！</h2>
+              <p className="opacity-90">{selectedCategoryTitle}</p>
+            </div>
+            <div className="p-10">
+              <div className="relative inline-flex items-center justify-center mb-6">
+                <svg className="w-40 h-40 transform -rotate-90">
+                  <circle cx="80" cy="80" r="70" stroke="currentColor" strokeWidth="12" fill="transparent" className="text-slate-100" />
+                  <circle 
+                    cx="80" cy="80" r="70" stroke="currentColor" strokeWidth="12" fill="transparent" 
+                    strokeDasharray={440} strokeDashoffset={440 - (440 * percentage) / 100}
+                    className={`${percentage >= 80 ? 'text-emerald-500' : percentage >= 60 ? 'text-amber-500' : 'text-rose-500'} transition-all duration-1000 ease-out`} 
+                  />
+                </svg>
+                <div className="absolute flex flex-col items-center justify-center text-4xl font-black text-slate-700">
+                  {percentage}<span className="text-lg text-slate-400">%</span>
+                </div>
+              </div>
+              <p className="text-xl font-medium text-slate-600 mb-8">
+                答對 {score} 題 / 共 {currentQuestions.length} 題
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button 
+                  onClick={() => setGameState('home')}
+                  className="px-8 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-colors flex items-center justify-center gap-2"
+                >
+                  <Home size={20} /> 回首頁
+                </button>
+                <button 
+                  onClick={() => startQuiz(selectedCategoryTitle.includes('綜合') ? 'all' : CATEGORIES.indexOf(selectedCategoryTitle.replace(' 特訓', '')))}
+                  className="px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition-colors shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+                >
+                  <RotateCcw size={20} /> 再測一次
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Mistakes Review */}
+          {incorrectAnswers.length > 0 ? (
+            <div>
+              <h3 className="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+                <AlertCircle className="text-rose-500" /> 錯題訂正 ({incorrectAnswers.length} 題)
+              </h3>
+              <div className="space-y-4">
+                {incorrectAnswers.map((item, idx) => (
+                  <div key={idx} className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                    <span className="text-xs font-bold text-indigo-500 uppercase tracking-wider mb-2 block">
+                      {item.categoryName}
+                    </span>
+                    <p className="font-bold text-slate-800 mb-4 text-lg">{item.question}</p>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4 text-sm">
+                      <div className="flex items-start gap-2 p-3 bg-rose-50 rounded-lg text-rose-700 border border-rose-100">
+                        <XCircle size={18} className="mt-0.5 shrink-0" />
+                        <div>
+                          <div className="font-bold mb-1">你的答案</div>
+                          {item.options[item.userAnswer]}
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-2 p-3 bg-emerald-50 rounded-lg text-emerald-700 border border-emerald-100">
+                        <CheckCircle size={18} className="mt-0.5 shrink-0" />
+                        <div>
+                          <div className="font-bold mb-1">正確答案</div>
+                          {item.options[item.correctAnswer]}
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="bg-slate-50 p-4 rounded-lg border border-slate-100 text-sm text-slate-600">
+                      <span className="font-bold text-slate-700 mr-2">解析：</span>{item.explanation}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div className="text-center py-10">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 mb-4">
+                <Award size={32} />
+              </div>
+              <h3 className="text-xl font-bold text-slate-800">太棒了！全對！</h3>
+              <p className="text-slate-500 mt-2">你的文法觀念非常清楚，繼續保持！</p>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  return null;
+}
