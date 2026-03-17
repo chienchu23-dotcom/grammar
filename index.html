@@ -61,290 +61,71 @@
     ];
 
     const RAW_QUESTIONS = [
-      // 1. 時態全集 (現在/過去/未來、進行式、完成式)
-      { c: 0, q: "Listen! The birds ____ beautifully in the trees.", o: ["sing", "are singing", "sang", "have sung"], a: 1, e: "Listen! (聽！) 暗示動作正在發生，應搭配現在進行式 (are/is/am + V-ing)。" },
-      { c: 0, q: "I ____ my keys. I can't open the door now.", o: ["lose", "lost", "have lost", "was losing"], a: 2, e: "現在無法開門是「現在的結果」，表示過去發生的動作對現在造成影響，用現在完成式 (have + Vp.p.)。" },
-      { c: 0, q: "My brother ____ to Japan three times so far.", o: ["goes", "went", "has been", "has gone"], a: 2, e: "so far (到目前為止) 常搭配現在完成式。has been to 表「去過(已回來)」，has gone to 表「去了(未回來)」。" },
-      { c: 0, q: "By the time we got to the station, the train ____.", o: ["leaves", "left", "has left", "had left"], a: 3, e: "「我們到達車站」是過去式，火車在我們到達「之前」就開走了，過去的過去要用過去完成式 (had + Vp.p.)。" },
-      { c: 0, q: "What ____ you ____ at 8:00 last night?", o: ["do; do", "did; do", "were; doing", "are; doing"], a: 2, e: "at 8:00 last night (昨晚八點) 是一個明確的過去時間點，應使用過去進行式 (was/were + V-ing)。" },
-      { c: 0, q: "He ____ TV when the telephone rang.", o: ["watches", "watched", "was watching", "has watched"], a: 2, e: "電話響 (短暫動作) 的時候，他「正在」看電視 (持續動作)。持續動作被打斷用過去進行式。" },
-      { c: 0, q: "We ____ a picnic if the weather is fine tomorrow.", o: ["have", "had", "will have", "are having"], a: 2, e: "條件子句 (if...) 用現在式代替未來式，但主要子句仍須維持未來式 (will + V)。" },
-      { c: 0, q: "I haven't seen Mary since she ____ to Taipei.", o: ["moves", "moved", "will move", "has moved"], a: 1, e: "since (自從) + 過去簡單式的時間點或子句，主要子句用現在完成式。" },
-      { c: 0, q: "Look at those dark clouds! It ____ soon.", o: ["rains", "rained", "is going to rain", "has rained"], a: 2, e: "有跡象顯示即將發生的事 (烏雲密布)，通常使用 be going to 來表示未來。" },
-      { c: 0, q: "The Earth ____ around the Sun.", o: ["go", "goes", "went", "is going"], a: 1, e: "不變的真理或自然現象，永遠使用現在簡單式。" },
-      { c: 0, q: "I ____ English for five years.", o: ["study", "studied", "am studying", "have studied"], a: 3, e: "for + 一段時間 (five years)，常搭配現在完成式，表示從過去持續到現在的動作。" },
-      { c: 0, q: "While I ____ down the street, I met an old friend.", o: ["walk", "walked", "was walking", "have walked"], a: 2, e: "While 引導的子句通常表示「一段持續的時間」，在過去情境中常接過去進行式。" },
-      { c: 0, q: "The movie ____ before we bought the tickets.", o: ["begins", "began", "has begun", "had begun"], a: 3, e: "買票是過去式 (bought)，電影開始發生在買票之前，用過去完成式 (had + Vp.p.)。" },
-      { c: 0, q: "As soon as he ____, we will start the meeting.", o: ["arrives", "arrived", "will arrive", "is arriving"], a: 0, e: "As soon as 引導的時間副詞子句中，要用「現在式」代替未來式。" },
-      { c: 0, q: "They ____ good friends since childhood.", o: ["are", "were", "have been", "will be"], a: 2, e: "since childhood 表「自童年起一直到現在」，應搭配現在完成式 (have been)。" },
-      { c: 0, q: "I ____ this book yesterday.", o: ["read", "reads", "will read", "have read"], a: 0, e: "yesterday 是明確的過去時間，使用過去簡單式。read 的過去式拼法相同但發音不同。" },
-      { c: 0, q: "By next month, he ____ here for three years.", o: ["will work", "works", "is working", "will have worked"], a: 3, e: "By + 未來時間 (到未來某時為止)，常搭配未來完成式 (will have + Vp.p.)。" },
-      { c: 0, q: "Water ____ at 100 degrees Celsius.", o: ["boil", "boils", "boiled", "is boiling"], a: 1, e: "不變的真理或科學事實，永遠使用現在簡單式，Water 不可數視為單數。" },
-      { c: 0, q: "Where is Mom? She ____ to the supermarket.", o: ["has been", "has gone", "went", "is going"], a: 1, e: "has gone to 表「去了某地且還沒回來」，符合「問媽媽在哪」的情境。" },
-      { c: 0, q: "I will tell him the news when he ____ back.", o: ["comes", "will come", "came", "is coming"], a: 0, e: "when 引導的時間副詞子句中，要用「現在式」代替未來式。" },
+      // 1. 時態全集 (現在/過去/未來、進行式、完成式) - 會考長句型情境題升級版
+      { c: 0, q: "Alice: What are you looking at, Bob? You look so focused.\nBob: Listen! The birds ____ beautifully in the trees. I'm trying to record their voices.", o: ["sing", "are singing", "sang", "have sung"], a: 1, e: "對話情境題。Bob 說 Listen! 並表示正在錄音，暗示動作正在發生，搭配現在進行式 (are singing)。" },
+      { c: 0, q: "Mom: Why are you still standing outside the house? It's freezing!\nSon: I ____ my keys on the bus. I can't open the door right now.", o: ["lose", "lost", "have lost", "was losing"], a: 2, e: "會考常考「過去動作對現在造成影響」。現在無法開門是結果，表示過去弄丟鑰匙的影響持續到現在，用現在完成式 (have lost)。" },
+      { c: 0, q: "John: I heard your brother loves traveling.\nMary: Yes, he ____ to Japan three times so far, and he plans to visit again next year.", o: ["goes", "went", "has been", "has gone"], a: 2, e: "so far (到目前為止) 常搭配現在完成式。has been to 表「去過(已回來)」，哥哥計畫明年再去，代表已經回來了。" },
+      { c: 0, q: "We ran as fast as we could to catch the 9:00 train to Taipei. However, by the time we got to the station, the train ____.", o: ["leaves", "left", "has left", "had left"], a: 3, e: "長句閱讀題。「我們到達車站」是過去式，而火車在我們到達「之前」就開走了，過去的過去要用過去完成式 (had left)。" },
+      { c: 0, q: "Police: What ____ you ____ at 8:00 last night?\nSuspect: I was having dinner with my family at a restaurant.", o: ["do; do", "did; do", "were; doing", "are; doing"], a: 2, e: "at 8:00 last night 是一個明確的過去時間點，且嫌犯回答 I was having...，故問句應使用過去進行式 (were doing)。" },
+      { c: 0, q: "Lisa: Look! The sky is getting so dark and the wind is blowing hard.\nTom: Yeah, I think it ____ soon. We'd better go home now.", o: ["rains", "rained", "is going to rain", "has rained"], a: 2, e: "情境推論題。有跡象顯示即將發生的事 (烏雲密布、颳強風)，通常使用 be going to 來表示未來。" },
+      { c: 0, q: "Peter: Have you seen my dictionary? I can't find it anywhere.\nJane: Oh, I ____ it on your desk a few minutes ago. Go check it again.", o: ["see", "saw", "have seen", "was seeing"], a: 1, e: "a few minutes ago (幾分鐘前) 是明確的過去時間點，動詞必須使用過去簡單式 (saw)。" },
+      { c: 0, q: "Mom: Why is the kitchen so messy?\nSon: Sorry, mom. I ____ to make a cake for Dad's birthday, but I accidentally dropped the flour.", o: ["try", "tried", "was trying", "have tried"], a: 2, e: "媽媽問為何現在廚房很亂，兒子解釋「剛才正在嘗試做蛋糕」，強調過去某段時間持續進行的動作，用過去進行式最生動。" },
+      { c: 0, q: "Amy: Is your brother still studying in the US?\nBob: No, he ____ back to Taiwan. He is working in Taipei now.", o: ["comes", "came", "has come", "was coming"], a: 2, e: "會考經典對話。哥哥現在在台北工作，代表「已經回到台灣」，過去的動作對現在造成改變，使用現在完成式。" },
+      { c: 0, q: "When the teacher walked into the classroom, the students ____ loudly. They didn't even notice her until she knocked on the desk.", o: ["talk", "talked", "were talking", "have talked"], a: 2, e: "老師走進教室 (短暫動作) 的時候，學生們「正在」大聲講話 (持續動作)。持續動作被打斷用過去進行式。" },
+      { c: 0, q: "Dear Diary, it has been raining for a whole week. I really hope the sun ____ soon, so I can go out and play basketball.", o: ["shines", "shone", "has shone", "will shine"], a: 3, e: "日記情境題。hope 後面通常接代表未來的事件，期待太陽即將露臉，用未來式 (will shine)。" },
+      { c: 0, q: "Reporter: Excuse me, sir. How long ____ you ____ in this town?\nResident: For over twenty years. I love the quiet life here.", o: ["do; live", "did; live", "have; lived", "are; living"], a: 2, e: "How long + for over twenty years 表從過去持續到現在的時間長度，必須使用現在完成式。" },
+      { c: 0, q: "Before Sarah went to bed last night, she ____ all her homework and packed her schoolbag for the next day.", o: ["finishes", "finished", "has finished", "had finished"], a: 3, e: "「上床睡覺」(went to bed) 是過去式，而「完成作業」發生在睡覺之前 (過去的過去)，使用過去完成式 (had finished)。" },
+      { c: 0, q: "I ____ this movie twice before, but I wouldn't mind watching it again because the story is so touching.", o: ["see", "saw", "have seen", "am seeing"], a: 2, e: "twice before (以前曾有過兩次) 表示經驗，常搭配現在完成式 (have seen)。" },
+      { c: 0, q: "Mr. Smith ____ in this company since he graduated from college in 2010. He is now the general manager.", o: ["works", "worked", "has worked", "is working"], a: 2, e: "since + 過去時間點 (2010)，主要子句表示從過去持續到現在的狀態，使用現在完成式。" },
+      { c: 0, q: "As soon as the famous singer ____ on the stage, all the fans started screaming and waving their hands happily.", o: ["steps", "stepped", "has stepped", "was stepping"], a: 1, e: "as soon as (一...就...) 連接兩個連貫的過去動作。粉絲開始尖叫 (started) 是過去式，歌手登台也是過去簡單式 (stepped)。" },
+      { c: 0, q: "My grandfather usually ____ a cup of hot tea while he is reading the morning newspaper in the living room.", o: ["drink", "drinks", "drank", "is drinking"], a: 1, e: "usually 表平常的習慣動作，主詞 My grandfather 為第三人稱單數，動詞加 s (drinks)。" },
+      { c: 0, q: "Jack: Are we still going camping this weekend?\nLily: Yes, we ____ to the mountains if the weather is sunny and warm.", o: ["go", "went", "will go", "have gone"], a: 2, e: "條件子句 (if...) 用現在式代替未來式，但主要子句仍須維持未來式 (will go)。" },
+      { c: 0, q: "The little boy was crying sadly in the park because his favorite balloon ____ away into the sky.", o: ["flies", "flew", "has flown", "had flown"], a: 3, e: "「男孩在哭」(was crying) 是過去式，氣球飛走發生在哭之前，強調原因發生在更早以前，用過去完成式 (had flown)。" },
+      { c: 0, q: "Mom: Have you fed the dog yet?\nSon: Yes, Mom. I ____ him thirty minutes ago. He is sleeping now.", o: ["feed", "fed", "have fed", "was feeding"], a: 1, e: "雖然問句是現在完成式 (yet)，但答句有明確的過去時間 thirty minutes ago，必須用過去簡單式 (fed)。" },
 
-      // 2. 三大子句 (名詞子句、關係子句、副詞子句)
-      { c: 1, q: "I don't know ____.", o: ["where does he live", "where he lives", "he lives where", "where is he living"], a: 1, e: "名詞子句當受詞時，須使用直述句語序：疑問詞 + 主詞 + 動詞。" },
-      { c: 1, q: "The boy ____ is wearing a red shirt is my brother.", o: ["who", "which", "whom", "whose"], a: 0, e: "先行詞為人 (The boy)，且在關係子句中作主詞，關係代名詞用 who 或 that。" },
-      { c: 1, q: "This is the book ____ I bought yesterday.", o: ["who", "what", "which", "whose"], a: 2, e: "先行詞為物 (the book)，關係代名詞用 which 或 that。" },
-      { c: 1, q: "Do you know the girl ____ hair is long and curly?", o: ["who", "which", "that", "whose"], a: 3, e: "表示所有格「...的」，關係代名詞須用 whose (那個女孩的頭髮)。" },
-      { c: 1, q: "Please tell me ____.", o: ["what time is it", "what time it is", "it is what time", "what is the time"], a: 1, e: "間接問句/名詞子句須用直述句語序：疑問詞 (what time) + 主詞 (it) + 動詞 (is)。" },
-      { c: 1, q: "I will call you ____ I get home.", o: ["because", "although", "when", "so"], a: 2, e: "when (當...時) 引導時間副詞子句。句意：當我到家時我會打給你。" },
-      { c: 1, q: "____ it was raining heavily, they still went out.", o: ["Because", "Although", "But", "So"], a: 1, e: "Although (雖然) 引導讓步副詞子句。注意：Although 和 But 在英文中不能同時出現在同一個句子裡。" },
-      { c: 1, q: "She is the only person ____ can help you.", o: ["who", "which", "whom", "that"], a: 3, e: "當先行詞前有 the only, the same, 最高級或序數修飾時，關係代名詞強烈建議/必須使用 that。" },
-      { c: 1, q: "The problem is ____ we don't have enough money.", o: ["what", "which", "that", "where"], a: 2, e: "that 引導名詞子句當作主詞補語 (在 be 動詞之後)，that 無意義但不可省略。" },
-      { c: 1, q: "I am not sure ____ he will come to the party or not.", o: ["that", "whether", "weather", "if"], a: 1, e: "whether... or not 表「是否」，if 雖然也可以表是否，但通常不與 or not 直接連用，且 weather 是天氣。" },
-      { c: 1, q: "The man ____ you talked to is our new principal.", o: ["who", "which", "whom", "whose"], a: 2, e: "先行詞為人，且在關係子句中作受詞 (talked to him)，關代用 whom (口語也可用 who/that 或省略)。" },
-      { c: 1, q: "He didn't go to school today ____ he was sick.", o: ["so", "because", "although", "but"], a: 1, e: "because (因為) 表原因。Because 和 So 不能同時出現在一個句子裡。" },
-      { c: 1, q: "Do you remember the day ____ we first met?", o: ["which", "where", "when", "that"], a: 2, e: "先行詞為時間 (the day)，關係副詞用 when (= on which)。" },
-      { c: 1, q: "I think ____ learning English is important.", o: ["what", "which", "that", "this"], a: 2, e: "that 引導名詞子句當作 think 的受詞，這裡的 that 可以省略。" },
-      { c: 1, q: "Anyone ____ breaks the rule will be punished.", o: ["who", "which", "whom", "whose"], a: 0, e: "先行詞 Anyone 指人，在子句中作主詞，關代用 who。" },
-      { c: 1, q: "I don't know who ____.", o: ["is he", "he is", "does he be", "he does"], a: 1, e: "間接問句/名詞子句須用直述句語序：疑問詞 + 主詞 + 動詞。" },
-      { c: 1, q: "The man ____ lives next door is very friendly.", o: ["whom", "which", "who", "whose"], a: 2, e: "先行詞為人，且在關係子句中作主詞，關代用 who (或 that)。" },
-      { c: 1, q: "Is this the restaurant ____ we had dinner last week?", o: ["which", "that", "where", "when"], a: 2, e: "先行詞為地方，關係副詞用 where (= in which)。" },
-      { c: 1, q: "____ he is very old, he still goes swimming every day.", o: ["But", "Although", "Because", "So"], a: 1, e: "Although (雖然) 引導讓步副詞子句，語意：雖然他很老了，仍每天游泳。" },
-      { c: 1, q: "The house ____ roof is red belongs to my uncle.", o: ["who", "which", "that", "whose"], a: 3, e: "表示所有格「那個房子的(屋頂)」，關係代名詞須用 whose。" },
+      // 2. 三大子句 (名詞子句、關係子句、副詞子句) - 會考長句型情境題升級版
+      { c: 1, q: "Tourist: Excuse me. I think I'm lost. Could you tell me ____?\nPolice officer: Sure. Just go straight for two blocks, and you'll see it on your right.", o: ["where is the train station", "where the train station is", "the train station is where", "where does the train station be"], a: 1, e: "間接問句/名詞子句當受詞，須使用直述句語序：疑問詞 (where) + 主詞 (the train station) + 動詞 (is)。" },
+      { c: 1, q: "Sally: Do you know the man ____?\nKevin: Oh, that's Mr. Lin. He is our new math teacher.", o: ["who is talking to the principal", "whom is talking to the principal", "which is talking to the principal", "whose is talking to the principal"], a: 0, e: "先行詞為人 (the man)，且在關係子句中作主詞 (正在跟校長說話的人)，關係代名詞用 who。" },
+      { c: 1, q: "The chocolate cake ____ Mary made for her mother's birthday looked terrible, but it tasted surprisingly good.", o: ["who", "what", "which", "whose"], a: 2, e: "長句主詞修飾。先行詞為物 (The chocolate cake)，關係代名詞用 which 或 that。" },
+      { c: 1, q: "____ the weather was extremely cold and windy, the brave climbers still decided to try and reach the top of the mountain.", o: ["Because", "Although", "But", "So"], a: 1, e: "語意邏輯題。天氣惡劣「雖然...但是...」仍決定攻頂，Although 引導讓步副詞子句。英文中 Although 和 But 不能同句。" },
+      { c: 1, q: "My sister was very sad because her computer was broken. The real problem was ____ she hadn't saved her report before it shut down.", o: ["what", "which", "that", "where"], a: 2, e: "that 引導名詞子句當作主詞補語 (在 be 動詞 was 之後)，that 無意義但不可省略。" },
+      { c: 1, q: "Reporter: Sir, can you tell us ____?\nWitness: Well, I just heard a loud noise and then the car crashed into the tree.", o: ["what happened here", "what did happen here", "here happened what", "what was happened here"], a: 0, e: "what 兼作疑問詞與主詞，引導名詞子句「這裡發生了什麼事」，語序不需倒裝。" },
+      { c: 1, q: "I will never forget the small town ____ I spent my childhood. The people there were so friendly and the air was always fresh.", o: ["which", "that", "where", "when"], a: 2, e: "先行詞為地方 (the small town)，且關係子句缺地方副詞 (in the town)，使用關係副詞 where。" },
+      { c: 1, q: "David is the only student in our class ____ got a perfect score on the math test. We are all very proud of him.", o: ["who", "whom", "that", "which"], a: 2, e: "當先行詞前有 the only (唯一的), the same 等修飾語時，關係代名詞強烈建議/必須使用 that。" },
+      { c: 1, q: "Cindy didn't go to the movies with us last night ____ she had to stay home and prepare for her science test.", o: ["so", "because", "although", "but"], a: 1, e: "語意邏輯題。because (因為) 表原因。Because 和 So 不能同時出現在一個句子裡。" },
+      { c: 1, q: "The clerk asked the customer ____ he wanted to pay in cash or by credit card.", o: ["that", "whether", "weather", "if"], a: 1, e: "whether... or... 表「是否...還是...」，引導名詞子句當作 asked 的受詞。" },
+      { c: 1, q: "I am not quite sure ____ the museum is open on Mondays. Let me check it on the internet for you.", o: ["that", "if", "what", "which"], a: 1, e: "if 在此作「是否」解，引導名詞子句，表示不確定的狀態 (not quite sure)。" },
+      { c: 1, q: "The stray dog ____ leg was badly injured was finally rescued by some kind-hearted students yesterday.", o: ["who", "which", "whose", "that"], a: 2, e: "表示所有格「那隻流浪狗的(腿)」，關係代名詞須用 whose。" },
+      { c: 1, q: "Everyone in the office knows the reason ____ the boss was so angry this morning. Someone made a big mistake in the report.", o: ["what", "which", "where", "why"], a: 3, e: "先行詞為 reason (原因)，關係副詞固定搭配 why (= for which)。" },
+      { c: 1, q: "Please don't worry about me. I will call you as soon as I ____ at the hotel in Tokyo safely.", o: ["arrive", "arrived", "will arrive", "am arriving"], a: 0, e: "as soon as (一...就...) 引導的時間副詞子句中，要用「現在式」代替未來式。" },
+      { c: 1, q: "The new smartphone ____ I bought online last week suddenly stopped working this morning. I need to return it.", o: ["who", "that", "where", "whose"], a: 1, e: "先行詞為物 (The new smartphone)，關代用 which 或 that。" },
+      { c: 1, q: "Can you believe ____ happened to me yesterday? I won the first prize in the lottery and got ten thousand dollars!", o: ["that", "which", "what", "where"], a: 2, e: "what (= the thing which) 引導名詞子句「發生的事情」，當作 believe 的受詞。" },
+      { c: 1, q: "I am looking for a quiet coffee shop ____ I can read my book and relax for the whole afternoon.", o: ["which", "that", "where", "when"], a: 2, e: "先行詞為地方 (coffee shop)，關係副詞用 where (= in which)。" },
+      { c: 1, q: "The horror movie ____ we watched last night was so scary that I couldn't sleep at all.", o: ["who", "which", "where", "whose"], a: 1, e: "先行詞為物 (movie)，關代用 which (或 that)。" },
+      { c: 1, q: "____ it is raining heavily outside, we have to cancel our picnic in the park and stay at home.", o: ["Because", "Although", "But", "So"], a: 0, e: "Because 表原因 (因為下大雨)。" },
+      { c: 1, q: "Does anyone know the boy ____ father is a famous movie director? He just transferred to our school.", o: ["who", "which", "whose", "that"], a: 2, e: "表示所有格「那個男孩的(父親)」，用 whose。" },
 
       // 3. 被動語態
-      { c: 2, q: "English ____ in many countries.", o: ["speaks", "is speaking", "is spoken", "has spoken"], a: 2, e: "英文是被說的，故用被動語態 (be 動詞 + Vp.p.)，現在式用 is spoken。" },
-      { c: 2, q: "The window ____ by the boy yesterday.", o: ["breaks", "broke", "is broken", "was broken"], a: 3, e: "yesterday 提示過去式，窗戶是被打破的，故用過去簡單被動語態 was broken。" },
-      { c: 2, q: "My bike ____ tomorrow.", o: ["will repair", "will be repaired", "is repairing", "repairs"], a: 1, e: "tomorrow 提示未來式，腳踏車將被修理，助動詞被動語態為 (will be + Vp.p.)。" },
-      { c: 2, q: "The letter ____ already.", o: ["has sent", "was sent", "has been sent", "is sending"], a: 2, e: "already (已經) 常配完成式，信是被寄出的，現在完成式被動為 (have/has been + Vp.p.)。" },
-      { c: 2, q: "Must the work ____ today?", o: ["finish", "finishes", "finished", "be finished"], a: 3, e: "助動詞 (Must/Can/Should) 之後的被動語態要用原形 be + Vp.p.。" },
-      { c: 2, q: "He was made ____ the floor by his mother.", o: ["sweep", "to sweep", "sweeping", "swept"], a: 1, e: "使役動詞 make 在主動時接受詞接原形動詞，但變成「被動語態」時，必須加回 to，變成 to V。" },
-      { c: 2, q: "The cake ____ delicious.", o: ["is tasted", "tastes", "is tasting", "tasted"], a: 1, e: "連綴動詞 (taste, sound, look...) 沒有被動語態！直接用主動形式即可。" },
-      { c: 2, q: "A lot of trees ____ planted in our school every year.", o: ["are", "were", "will be", "have been"], a: 0, e: "every year 提示現在簡單式，複數主詞 trees 搭配 are + Vp.p.。" },
-      { c: 2, q: "The trash ____ taken out right now.", o: ["is", "is being", "has been", "was"], a: 1, e: "right now 提示現在進行式，現在進行式的被動語態為 (is/are/am + being + Vp.p.)。" },
-      { c: 2, q: "The baby is taken good care ____ by his grandmother.", o: ["for", "with", "of", "to"], a: 2, e: "片語動詞 take care of 變被動時，介系詞 of 必須保留，不可省略。" },
-      { c: 2, q: "The book was written ____ a famous author.", o: ["with", "by", "in", "from"], a: 1, e: "被動語態中，表示「被...人(執行者)」時，使用介系詞 by。" },
-      { c: 2, q: "My wallet ____ on my way home.", o: ["stole", "is stolen", "was stolen", "has stolen"], a: 2, e: "錢包是在回家的路上「被偷的」(過去發生的單一事件)，用過去簡單被動。" },
-      { c: 2, q: "This problem can ____ easily.", o: ["solve", "be solved", "is solved", "solving"], a: 1, e: "助動詞 can + be + Vp.p. 構成被動。" },
-      { c: 2, q: "Nothing ____ done to solve the problem yet.", o: ["has", "has been", "is", "was"], a: 1, e: "yet 提示現在完成式，Nothing 視為單數，且為被動，故用 has been done。" },
-      { c: 2, q: "The room ____ before the guests arrive.", o: ["will clean", "must be cleaned", "must clean", "cleaned"], a: 1, e: "房間「必須被清理」，助動詞 must + be + Vp.p.。" },
-      { c: 2, q: "These shoes ____ in Taiwan.", o: ["make", "made", "are made", "are making"], a: 2, e: "鞋子是「被製造」的，描述一般事實用現在簡單被動語態 (are made)。" },
-      { c: 2, q: "My car ____ right now.", o: ["washed", "is washing", "was washed", "is being washed"], a: 3, e: "right now 提示現在進行式，車子「正在被洗」，用 is being + Vp.p.。" },
-      { c: 2, q: "The homework ____ finished by tomorrow.", o: ["will", "will be", "is", "has been"], a: 1, e: "by tomorrow (到明天為止) 提示未來式，作業將會「被完成」，用 will be + Vp.p.。" },
-      { c: 2, q: "The little boy was seen ____ the store.", o: ["enter", "entered", "to enter", "entering"], a: 2, e: "感官動詞被動語態，後面的原形動詞要還原成不定詞 to V。" },
-      { c: 2, q: "All the tickets ____ out in ten minutes yesterday.", o: ["sell", "sold", "were sold", "are sold"], a: 2, e: "yesterday 提示過去式，票是「被賣光」的，用 were sold。" },
-
-      // 4. 特殊動詞 (感官、使役、連綴)
-      { c: 3, q: "I saw the boy ____ the street just now.", o: ["cross", "crossed", "to cross", "crosses"], a: 0, e: "感官動詞 (see/hear/watch) + 受詞 + 原形動詞 (強調事實/全程) 或 V-ing (強調正在進行)。選項中只有 cross。" },
-      { c: 3, q: "Mom makes me ____ my room every weekend.", o: ["clean", "to clean", "cleaning", "cleaned"], a: 0, e: "使役動詞 (make/have/let) + 受詞 + 原形動詞 (主動)。" },
-      { c: 3, q: "The medicine tastes ____.", o: ["terrible", "terribly", "badly", "well"], a: 0, e: "連綴動詞 (taste/smell/sound/look/feel) 後面必須接「形容詞」作為主詞補語。" },
-      { c: 3, q: "He had his car ____ yesterday.", o: ["wash", "to wash", "washing", "washed"], a: 3, e: "使役動詞 have + 物 (car) + Vp.p. (過去分詞)，表示讓某物「被」做..." },
-      { c: 3, q: "Let him ____ what he wants.", o: ["do", "does", "to do", "doing"], a: 0, e: "使役動詞 let + 受詞 + 原形動詞。" },
-      { c: 3, q: "The music sounds ____. I like it.", o: ["beautiful", "beautifully", "wonderfully", "badly"], a: 0, e: "連綴動詞 sound 後接形容詞。" },
-      { c: 3, q: "Did you hear someone ____ the piano in the next room?", o: ["play", "played", "to play", "plays"], a: 0, e: "感官動詞 hear + 受詞 + 原形動詞/V-ing。" },
-      { c: 3, q: "The story made us ____.", o: ["sadly", "sad", "to sad", "saddened"], a: 1, e: "make + 受詞 + 形容詞 (使...變得...)。sad 是形容詞。" },
-      { c: 3, q: "You look ____ in that dress.", o: ["beautifully", "beautiful", "beauty", "to be beautiful"], a: 1, e: "連綴動詞 look 後接形容詞 beautiful。" },
-      { c: 3, q: "The teacher got the students ____ homework on time.", o: ["finish", "to finish", "finishing", "finished"], a: 1, e: "get 雖然有使役的意味，但用法不同：get + 人 + to V (要求某人去做某事)。" },
-      { c: 3, q: "I smelled something ____ in the kitchen.", o: ["burn", "burning", "burned", "to burn"], a: 1, e: "感官動詞 smell + 受詞 + V-ing (強調當下正在燃燒的狀態)。" },
-      { c: 3, q: "He felt his heart ____ fast.", o: ["beat", "beaten", "to beat", "beats"], a: 0, e: "感官動詞 feel + 受詞 + 原形動詞/V-ing。" },
-      { c: 3, q: "The weather is getting ____.", o: ["cold and cold", "colder and colder", "more and more cold", "coldly"], a: 1, e: "get/become (連綴動詞表變化) + 比較級 and 比較級，表示「越來越...」。" },
-      { c: 3, q: "Don't let the dog ____ away.", o: ["run", "to run", "running", "ran"], a: 0, e: "let + 受詞 + 原形動詞。" },
-      { c: 3, q: "She had her hair ____ this morning.", o: ["cut", "to cut", "cutting", "cuts"], a: 0, e: "have + 物 (hair) + Vp.p. (頭髮是被剪的，cut的過去分詞還是cut)。" },
-      { c: 3, q: "I had my computer ____ yesterday.", o: ["fix", "fixed", "fixing", "to fix"], a: 1, e: "have + 物 + Vp.p.：使役動詞用法，表示讓某物「被」處理。" },
-      { c: 3, q: "The pizza smells so ____. I want a bite.", o: ["good", "well", "badly", "goodly"], a: 0, e: "連綴動詞 smell 後面必須接形容詞 (good)。well 當形容詞只有「健康的」之意。" },
-      { c: 3, q: "Did you notice the earth ____ just a moment ago?", o: ["shook", "to shake", "shaking", "shaken"], a: 2, e: "notice (注意到) 也是感官動詞，後接原形動詞或 V-ing (shaking)。" },
-      { c: 3, q: "Please keep the door ____.", o: ["close", "closing", "closed", "to close"], a: 2, e: "keep + 受詞 + 受詞補語。門是被關著的狀態，用過去分詞 closed。" },
-      { c: 3, q: "The news made everyone ____.", o: ["happily", "happiness", "happy", "to be happy"], a: 2, e: "make + 受詞 + 形容詞 (使...變得...)。happy 是形容詞。" },
-
-      // 5. 花費動詞 (spend, take, cost, pay)
-      { c: 4, q: "It ____ me two hours to do the homework.", o: ["spent", "took", "cost", "paid"], a: 1, e: "It takes/took + 人 + 時間 + to V。主詞為虛主詞 It 時，花費時間用 take。" },
-      { c: 4, q: "I ____ $500 on this shirt.", o: ["spent", "took", "cost", "paid"], a: 0, e: "人 + spend + 金錢/時間 + on 物品 / V-ing。主詞是人，且後接 on，用 spend。" },
-      { c: 4, q: "The new car ____ him a lot of money.", o: ["spent", "took", "cost", "paid"], a: 2, e: "物 + cost (+人) + 金錢。主詞是事物，花費金錢用 cost。" },
-      { c: 4, q: "She ____ $200 for the concert ticket.", o: ["spent", "took", "cost", "paid"], a: 3, e: "人 + pay + 金錢 + for 物品。主詞是人，且後接 for，用 pay。" },
-      { c: 4, q: "____ takes patience to learn a new language.", o: ["It", "That", "This", "He"], a: 0, e: "It takes + 抽象名詞 (patience) + to V。It 為虛主詞。" },
-      { c: 4, q: "He spent all weekend ____ video games.", o: ["to play", "play", "playing", "played"], a: 2, e: "spend + 時間 + (in) V-ing。後面必須接動名詞。" },
-      { c: 4, q: "How much did you ____ for that book?", o: ["spend", "take", "cost", "pay"], a: 3, e: "搭配介系詞 for，且主詞是 you (人)，用 pay。" },
-      { c: 4, q: "How much did that book ____ you?", o: ["spend", "take", "cost", "pay"], a: 2, e: "主詞是 that book (物)，問花多少錢，用 cost。" },
-      { c: 4, q: "How long does it ____ to walk to the station?", o: ["spend", "take", "cost", "pay"], a: 1, e: "主詞是 it，問花費多少時間，用 take。" },
-      { c: 4, q: "I paid in cash ____ the meal.", o: ["on", "for", "to", "with"], a: 1, e: "pay for something (為某物付款)。" },
-      { c: 4, q: "Walking to school ____ me 15 minutes.", o: ["spends", "takes", "costs", "pays"], a: 1, e: "動名詞 (Walking) 當主詞視為事物，花費時間用 takes。" },
-      { c: 4, q: "The watch ____ $1,000.", o: ["spends", "takes", "costs", "pays"], a: 2, e: "主詞是 The watch (物)，花費金錢用 costs。" },
-      { c: 4, q: "They spent a lot of money ____ fixing the roof.", o: ["to", "for", "on", "in"], a: 2, e: "spend money on + N/V-ing (將錢花在...上)。" },
-      { c: 4, q: "It ____ courage to tell the truth.", o: ["spends", "takes", "costs", "pays"], a: 1, e: "It takes + 特質/心力 + to V。表示「需要...」。" },
-      { c: 4, q: "She didn't ____ much time reading the report.", o: ["spend", "take", "cost", "pay"], a: 0, e: "主詞是 She (人)，花費時間且後面接 V-ing (reading)，用 spend。" },
-      { c: 4, q: "I ____ two hours waiting for the bus.", o: ["spent", "took", "cost", "paid"], a: 0, e: "主詞是人，且後接時間 + V-ing，使用 spend。" },
-      { c: 4, q: "How much did it ____ to fix the bike?", o: ["spend", "take", "cost", "pay"], a: 2, e: "主詞是 it (虛主詞)，問花多少錢，使用 cost。" },
-      { c: 4, q: "This jacket ____ me $2,000.", o: ["spent", "took", "cost", "paid"], a: 2, e: "主詞是物 (This jacket)，花費某人多少金錢用 cost。" },
-      { c: 4, q: "It ____ me an hour to clean the room.", o: ["spent", "took", "cost", "paid"], a: 1, e: "It takes + 人 + 時間 + to V。花時間用 take。" },
-      { c: 4, q: "I ____ for the coffee with my credit card.", o: ["spent", "took", "cost", "paid"], a: 3, e: "主詞是人，搭配介系詞 for (為...付款)，用 pay。" },
-
-      // 6. 情緒形容詞
-      { c: 5, q: "The movie is very ____. I want to watch it again.", o: ["interest", "interested", "interesting", "interests"], a: 2, e: "修飾事物 (The movie) 令人感到有趣，用 V-ing (interesting)。" },
-      { c: 5, q: "I am ____ in English history.", o: ["interest", "interested", "interesting", "interests"], a: 1, e: "表示人本身感到...，用 V-ed。be interested in 為固定用法。" },
-      { c: 5, q: "The news was ____ to all of us.", o: ["surprised", "surprising", "surprise", "surprises"], a: 1, e: "消息 (The news) 令人驚訝的，修飾事物用 V-ing。" },
-      { c: 5, q: "We were ____ at the bad news.", o: ["surprised", "surprising", "surprise", "surprises"], a: 0, e: "人 (We) 感到驚訝，用 V-ed。be surprised at 為固定用法。" },
-      { c: 5, q: "He felt ____ because there was nothing to do.", o: ["bored", "boring", "bore", "bores"], a: 0, e: "人感到無聊，用 V-ed (bored)。" },
-      { c: 5, q: "This book is so ____ that I fall asleep.", o: ["bored", "boring", "bore", "bores"], a: 1, e: "書令人感到無聊，修飾事物用 V-ing (boring)。" },
-      { c: 5, q: "Are you ____ of the dark?", o: ["scare", "scaring", "scared", "scares"], a: 2, e: "人感到害怕，用 V-ed。be scared of (害怕...)。" },
-      { c: 5, q: "The long journey was very ____.", o: ["tired", "tiring", "tire", "tires"], a: 1, e: "旅程 (事物) 令人疲倦，用 V-ing (tiring)。" },
-      { c: 5, q: "I am ____ with my current job.", o: ["satisfied", "satisfying", "satisfy", "satisfies"], a: 0, e: "人感到滿意，用 V-ed。be satisfied with (對...滿意)。" },
-      { c: 5, q: "The baseball game was ____. Everyone shouted excitedly.", o: ["excited", "exciting", "excite", "excites"], a: 1, e: "比賽 (事物) 令人興奮，用 V-ing (exciting)。" },
-      { c: 5, q: "She is ____ about her upcoming trip.", o: ["excited", "exciting", "excite", "excites"], a: 0, e: "人對...感到興奮，用 V-ed。be excited about。" },
-      { c: 5, q: "It is ____ to see you again.", o: ["pleased", "pleasing", "please", "pleases"], a: 1, e: "It 是虛主詞代替後面的 to see you (事物)，事物令人愉悅用 pleasing。" },
-      { c: 5, q: "His answer was ____. I still don't understand.", o: ["confused", "confusing", "confuse", "confuses"], a: 1, e: "答案 (事物) 令人困惑，用 V-ing。" },
-      { c: 5, q: "She looked ____ when she heard the results.", o: ["disappointed", "disappointing", "disappoint", "disappoints"], a: 0, e: "人感到失望，用 V-ed。" },
-      { c: 5, q: "That is a ____ story.", o: ["touched", "touching", "touch", "touches"], a: 1, e: "故事 (事物) 令人感動，用 V-ing (touching)。" },
-      { c: 5, q: "The ghost story is very ____.", o: ["scare", "scaring", "scared", "scary"], a: 3, e: "形容事物本身令人害怕，常用 scary (形容詞)。" },
-      { c: 5, q: "I am ____ of making mistakes.", o: ["terrified", "terrifying", "terrify", "terrifies"], a: 0, e: "人感到害怕，用 V-ed (terrified)。" },
-      { c: 5, q: "The ending of the movie was ____.", o: ["surprised", "surprising", "surprise", "surprises"], a: 1, e: "電影結局(事物)令人驚訝，用 V-ing (surprising)。" },
-      { c: 5, q: "He is always ____ about everything.", o: ["worried", "worrying", "worry", "worries"], a: 0, e: "人感到擔憂，用 V-ed。be worried about... (擔心...)。" },
-      { c: 5, q: "Are you ____ with the result?", o: ["satisfied", "satisfying", "satisfy", "satisfies"], a: 0, e: "人感到滿意，用 V-ed。be satisfied with... (對...感到滿意)。" },
-
-      // 7. 句型結構 (附加問句、附和句)
-      { c: 6, q: "You are a student, ____?", o: ["are you", "aren't you", "do you", "don't you"], a: 1, e: "附加問句：前肯定，後否定。be 動詞直接倒裝。" },
-      { c: 6, q: "He didn't go to school, ____?", o: ["did he", "didn't he", "does he", "doesn't he"], a: 0, e: "附加問句：前否定，後肯定。用助動詞 did。" },
-      { c: 6, q: "Open the door, ____?", o: ["do you", "don't you", "will you", "shall we"], a: 2, e: "祈使句的附加問句，不論肯定或否定，一律用 will you? (Let's 除外)。" },
-      { c: 6, q: "Let's go to the movies, ____?", o: ["will you", "shall we", "don't we", "do we"], a: 1, e: "Let's ... 開頭的祈使句，附加問句一律用 shall we?。" },
-      { c: 6, q: "There is an apple on the table, ____?", o: ["is it", "isn't it", "is there", "isn't there"], a: 3, e: "There is/are 句型，附加問句的主詞要沿用 there。" },
-      { c: 6, q: "I like apples. - ____", o: ["So do I.", "Neither do I.", "So am I.", "Neither am I."], a: 0, e: "附和句：肯定附和用 So。前面是一般動詞 like，助動詞用 do。So do I (我也是)。" },
-      { c: 6, q: "He hasn't finished it. - ____", o: ["So have I.", "Neither have I.", "Neither do I.", "So do I."], a: 1, e: "附和句：否定附和用 Neither。前面是完成式 haven't，沿用助動詞 have。Neither have I (我也還沒)。" },
-      { c: 6, q: "She can play the piano, and ____ he.", o: ["so can", "neither can", "so does", "neither does"], a: 0, e: "肯定附和，前面有 can，後面沿用 can。so can he。" },
-      { c: 6, q: "Nobody called me, ____?", o: ["did they", "didn't they", "did he", "didn't he"], a: 0, e: "Nobody 表否定，後用肯定。Nobody 的代名詞通常用 they。故為 did they?" },
-      { c: 6, q: "Tom seldom goes to bed late, ____?", o: ["does he", "doesn't he", "is he", "isn't he"], a: 0, e: "seldom (很少) 是隱性否定字，所以前面算否定句，後面附加問句要用肯定 does he。" },
-      { c: 6, q: "I am right, ____?", o: ["am not I", "aren't I", "amn't I", "am I"], a: 1, e: "I am ... 的否定附加問句，習慣上用 aren't I? 而不是 am not I?。" },
-      { c: 6, q: "He has to work today, ____?", o: ["hasn't he", "has he", "doesn't he", "does he"], a: 2, e: "has to (必須) 是一般動詞片語，否定要用助動詞 doesn't。" },
-      { c: 6, q: "They have a lot of money, ____?", o: ["haven't they", "don't they", "do they", "have they"], a: 1, e: "have 在這裡作一般動詞「擁有」，附加問句要用助動詞 don't/doesn't/didn't。" },
-      { c: 6, q: "I don't like math. - ____", o: ["Me too.", "Me either.", "Me neither.", "So do I."], a: 2, e: "口語中，否定附和可用 Me neither. (Me either 也是常見口語，但正規文法常選 Me neither / Neither do I)。" },
-      { c: 6, q: "Nothing is impossible, ____?", o: ["is it", "isn't it", "are they", "aren't they"], a: 0, e: "Nothing 是否定字且視為單數事物，代名詞用 it，後接肯定 is it。" },
-      { c: 6, q: "You have finished your homework, ____?", o: ["have you", "haven't you", "do you", "don't you"], a: 1, e: "前面是現在完成式 (have + Vp.p.)，附加問句沿用助動詞 have 的否定。" },
-      { c: 6, q: "He never tells lies, ____?", o: ["does he", "doesn't he", "is he", "isn't he"], a: 0, e: "never 是否定字，前半句算否定，附加問句要用肯定 (does he)。" },
-      { c: 6, q: "Tom didn't go to the party, and ____.", o: ["neither did Mary", "so did Mary", "neither Mary did", "so Mary did"], a: 0, e: "否定附和句用 neither + 倒裝 (助動詞 + 主詞)。" },
-      { c: 6, q: "Don't make any noise, ____?", o: ["do you", "don't you", "will you", "shall we"], a: 2, e: "否定祈使句的附加問句一律用 will you?。" },
-      { c: 6, q: "I can speak English, and my sister ____, too.", o: ["is", "does", "can", "has"], a: 2, e: "前面有助動詞 can，後面附和句也要沿用 can。" },
-
-      // 8. 代名詞與介系詞
-      { c: 7, q: "I have two brothers. One is a doctor, and ____ is a teacher.", o: ["another", "other", "the other", "others"], a: 2, e: "兩者之中的「另一個」 (限定最後一個)，用 the other。" },
-      { c: 7, q: "Some students like math, and ____ like English.", o: ["other", "the other", "others", "another"], a: 2, e: "Some... others... (一些人... 其他一些人...)，無特定範圍的其餘複數用 others。" },
-      { c: 7, q: "I don't like this shirt. Please show me ____.", o: ["another", "other", "the other", "others"], a: 0, e: "another 表示「三者或以上中的任意另一個」。" },
-      { c: 7, q: "He was born ____ May.", o: ["in", "on", "at", "of"], a: 0, e: "在某個月分、年份、季節，介系詞用 in。" },
-      { c: 7, q: "The meeting is ____ Monday morning.", o: ["in", "on", "at", "of"], a: 1, e: "指定某天的早中晚 (Monday morning)，介系詞用 on。" },
-      { c: 7, q: "Look ____ the blackboard.", o: ["in", "on", "at", "to"], a: 2, e: "look at + 目標 (注視著...)。" },
-      { c: 7, q: "She is good ____ playing tennis.", o: ["in", "on", "at", "with"], a: 2, e: "be good at + N/V-ing (擅長於...)。" },
-      { c: 7, q: "My birthday is ____ October 10th.", o: ["in", "on", "at", "to"], a: 1, e: "特定的日期 (幾月幾日)，介系詞用 on。" },
-      { c: 7, q: "Both of my parents are teachers. ____ of them work hard.", o: ["All", "Both", "Each", "Two"], a: 1, e: "Both 指「兩者都...」。" },
-      { c: 7, q: "____ of the students in my class has a dictionary.", o: ["All", "Both", "Each", "Some"], a: 2, e: "Each (每一個) 視為單數主詞，故動詞用 has。" },
-      { c: 7, q: "We arrive ____ the airport at 7 AM.", o: ["in", "on", "at", "to"], a: 2, e: "arrive at + 小地方 (車站、機場)。" },
-      { c: 7, q: "He is sitting ____ me and Tom.", o: ["among", "between", "in", "with"], a: 1, e: "between A and B (在兩者之間)。among 用於三者或以上之間。" },
-      { c: 7, q: "Of all the boys, Tom is ____.", o: ["tall", "taller", "the tallest", "tallest"], a: 2, e: "Of all... (在所有人之中) 提示最高級，須加 the + -est。" },
-      { c: 7, q: "I want to buy a pen. Do you have ____?", o: ["it", "one", "them", "ones"], a: 1, e: "one 代替前面提過的同類但非同一個單數物品；it 代替同一個物品。" },
-      { c: 7, q: "Thanks ____ your help.", o: ["for", "to", "with", "of"], a: 0, e: "Thank someone for something (因為某事而感謝某人)。" },
-      { c: 7, q: "There are three apples. One is red, another is green, and ____ is yellow.", o: ["other", "the other", "others", "the others"], a: 1, e: "三者中的最後一個 (限定範圍的剩下一個)，用 the other。" },
-      { c: 7, q: "We usually go to school ____ bus.", o: ["in", "on", "by", "with"], a: 2, e: "搭乘交通工具，介系詞用 by (by bus/train/car/boat)。" },
-      { c: 7, q: "She has two cats. ____ of them are very cute.", o: ["All", "Both", "Some", "Each"], a: 1, e: "兩者都...，代名詞用 Both。" },
-      { c: 7, q: "He put the book ____ the desk.", o: ["in", "on", "at", "to"], a: 1, e: "放在桌子「上面」表面接觸，介系詞用 on。" },
-      { c: 7, q: "Could you pass the salt ____ me?", o: ["for", "to", "with", "on"], a: 1, e: "pass something to someone (把某物遞給某人)。" },
-
-      // 9. 比較級與最高級
-      { c: 8, q: "Tom is ____ than his brother.", o: ["tall", "taller", "the tallest", "more tall"], a: 1, e: "看到 than 要用比較級。tall 的比較級是 taller。" },
-      { c: 8, q: "This is ____ book I have ever read.", o: ["interesting", "more interesting", "the most interesting", "most interesting"], a: 2, e: "I have ever read (我讀過之中) 提示最高級範圍。the most + 多音節形容詞。" },
-      { c: 8, q: "English is as ____ as Math.", o: ["important", "more important", "most important", "importantly"], a: 0, e: "as + 原級形容詞/副詞 + as (和...一樣)。" },
-      { c: 8, q: "He runs ____ of all the students.", o: ["fast", "faster", "fastest", "the fastest"], a: 3, e: "of all 提示最高級，副詞最高級 the fastest (the 常常可省略，但有 the 最完整)。" },
-      { c: 8, q: "It's getting ____ and ____.", o: ["dark; dark", "darker; darker", "more dark; more dark", "darkest; darkest"], a: 1, e: "比較級 and 比較級 表「越來越...」。" },
-      { c: 8, q: "She is much ____ today.", o: ["good", "better", "best", "the best"], a: 1, e: "much 可以用來修飾比較級，加強語氣 (好多了)。good 的比較級是 better。" },
-      { c: 8, q: "Which is ____, the sun or the moon?", o: ["big", "bigger", "the biggest", "biggest"], a: 1, e: "兩者 (the sun or the moon) 做比較，用比較級 bigger。" },
-      { c: 8, q: "He is ____ boy in his class.", o: ["taller", "the taller", "tallest", "the tallest"], a: 3, e: "in his class 表群體範圍，用最高級 the tallest。" },
-      { c: 8, q: "This question is less ____ than that one.", o: ["difficult", "more difficult", "most difficult", "difficulty"], a: 0, e: "less + 原級形容詞 + than，表示「較不...」。" },
-      { c: 8, q: "The ____ you study, the ____ grades you will get.", o: ["hard; good", "harder; better", "hardest; best", "more hard; more good"], a: 1, e: "The 比較級..., the 比較級... (越...，就越...)。" },
-      { c: 8, q: "Taipei 101 is one of ____ buildings in the world.", o: ["tall", "taller", "the tallest", "tallest"], a: 2, e: "one of the + 最高級 + 複數名詞 (最...的...之一)。" },
-      { c: 8, q: "Of the two brothers, John is ____.", o: ["smart", "smarter", "the smarter", "the smartest"], a: 2, e: "Of the two... (兩者之中) 是特殊用法，比較級前要加 the (the smarter)。" },
-      { c: 8, q: "She has ____ money than I do.", o: ["few", "fewer", "little", "less"], a: 3, e: "money 是不可數名詞，little 的比較級是 less。" },
-      { c: 8, q: "He runs as ____ as a deer.", o: ["fast", "fastly", "faster", "fastest"], a: 0, e: "as + 原級 + as。fast 本身就是副詞，沒有 fastly 這個字。" },
-      { c: 8, q: "This movie is even ____ than the last one.", o: ["bad", "badder", "worse", "worst"], a: 2, e: "even (甚至) 修飾比較級，bad 的比較級是不規則變化 worse。" },
-      { c: 8, q: "My brother is two years ____ than me.", o: ["old", "older", "oldest", "elder"], a: 1, e: "看到 than 用比較級。older 是一般比較級；elder 通常只作形容詞不接 than。" },
-      { c: 8, q: "Who is ____, Mary or Jane?", o: ["beautiful", "more beautiful", "most beautiful", "the most beautiful"], a: 1, e: "兩者做比較，用比較級 more beautiful。" },
-      { c: 8, q: "This is ____ movie I have ever seen.", o: ["good", "better", "best", "the best"], a: 3, e: "I have ever seen (我看過之中) 提示最高級，用 the best。" },
-      { c: 8, q: "She works ____ of all the students in her class.", o: ["hard", "harder", "hardest", "the hardest"], a: 3, e: "of all... 提示最高級。副詞的最高級 (the hardest)。" },
-      { c: 8, q: "The weather is getting ____ and hotter.", o: ["hot", "hotter", "hottest", "more hot"], a: 1, e: "比較級 and 比較級 表「越來越...」。hotter and hotter。" },
-
-      // 10. 動名詞與不定詞
-      { c: 9, q: "Remember ____ the door when you leave.", o: ["lock", "locking", "to lock", "locked"], a: 2, e: "remember to V (記得「要」去做... / 尚未做)。" },
-      { c: 9, q: "I remember ____ him before, but I forgot his name.", o: ["meet", "meeting", "to meet", "met"], a: 1, e: "remember V-ing (記得「曾經」做過... / 已做過)。" },
-      { c: 9, q: "He stopped ____ a cigarette because he was tired.", o: ["smoke", "smoking", "to smoke", "smoked"], a: 2, e: "stop to V (停下原本的事，去從事另一個動作)。停下來去抽菸。" },
-      { c: 9, q: "He stopped ____ a cigarette because it's bad for health.", o: ["smoke", "smoking", "to smoke", "smoked"], a: 1, e: "stop V-ing (停止正在做的動作)。戒菸 / 停止抽菸。" },
-      { c: 9, q: "Would you mind ____ the window?", o: ["open", "opening", "to open", "opened"], a: 1, e: "mind (介意) 後面固定接 V-ing 動名詞。" },
-      { c: 9, q: "I enjoy ____ to music in my free time.", o: ["listen", "listening", "to listen", "listened"], a: 1, e: "enjoy 後面固定接 V-ing 動名詞。" },
-      { c: 9, q: "She decided ____ a new computer.", o: ["buy", "buying", "to buy", "bought"], a: 2, e: "decide (決定) 後面接 to V 不定詞。" },
-      { c: 9, q: "____ early is good for your health.", o: ["Get up", "Getting up", "Got up", "Get"], a: 1, e: "動名詞 (Getting up) 可當作句子的主詞。" },
-      { c: 9, q: "I am looking forward to ____ you.", o: ["see", "seeing", "saw", "be seen"], a: 1, e: "look forward to 的 to 是介系詞，後面必須接 V-ing。" },
-      { c: 9, q: "He gave up ____ years ago.", o: ["smoke", "smoking", "to smoke", "smoked"], a: 1, e: "give up (放棄) 的 up 是介系詞，後面接 V-ing。" },
-      { c: 9, q: "I finished ____ the report yesterday.", o: ["write", "writing", "to write", "written"], a: 1, e: "finish 後面固定接 V-ing 動名詞。" },
-      { c: 9, q: "Thank you for ____ me with my homework.", o: ["help", "helping", "to help", "helped"], a: 1, e: "for 是介系詞，後面遇到動詞要加 V-ing。" },
-      { c: 9, q: "He forgot ____ the door, so the house was broken into.", o: ["lock", "locking", "to lock", "locked"], a: 2, e: "forgot to V (忘記要去.../未做)。門沒鎖導致被闖空門。" },
-      { c: 9, q: "I enjoy ____ basketball with my friends.", o: ["play", "playing", "to play", "played"], a: 1, e: "enjoy 後面固定接 V-ing 動名詞。" },
-      { c: 9, q: "____ is believing.", o: ["See", "Seeing", "Saw", "Seen"], a: 1, e: "動名詞 (Seeing) 可以當作句子的主詞。諺語：眼見為憑。" },
-      
-      // ==========================================
-      // 第一波擴充題庫：單元 0~2 各增補 30 題 (達到 50 題)
-      // ==========================================
-      
-      // 擴充：1. 時態全集
-      { c: 0, q: "I ____ to the radio when my phone rang.", o: ["listen", "listened", "was listening", "am listening"], a: 2, e: "電話響(過去短暫動作)時，我正在聽廣播(過去持續動作)，用過去進行式。" },
-      { c: 0, q: "He ____ his homework yet. He is still writing it.", o: ["finishes", "finished", "hasn't finished", "doesn't finish"], a: 2, e: "yet (尚未) 通常搭配現在完成式的否定句 (hasn't/haven't + Vp.p.)。" },
-      { c: 0, q: "If it ____ tomorrow, we will stay at home.", o: ["rains", "will rain", "rained", "is raining"], a: 0, e: "條件子句 (If...) 中，用現在式 (rains) 代替未來式。" },
-      { c: 0, q: "The sun ____ in the east and sets in the west.", o: ["rise", "rises", "rose", "is rising"], a: 1, e: "不變的真理與自然現象永遠使用現在簡單式。" },
-      { c: 0, q: "Look! The baby ____ peacefully in the bed.", o: ["sleeps", "slept", "is sleeping", "has slept"], a: 2, e: "Look! (看！) 提示動作正在發生，使用現在進行式。" },
-      { c: 0, q: "I ____ an apple and drank some milk yesterday morning.", o: ["eat", "ate", "have eaten", "was eating"], a: 1, e: "yesterday morning 是明確的過去時間，使用過去簡單式 (ate)。" },
-      { c: 0, q: "We ____ for you for two hours! Where have you been?", o: ["wait", "waited", "have waited", "are waiting"], a: 2, e: "for + 一段時間，搭配現在完成式，表示動作從過去持續到現在。" },
-      { c: 0, q: "When I was a child, I ____ in a small village.", o: ["live", "lived", "have lived", "was living"], a: 1, e: "描述過去的常態或狀態 (小時候的居住地)，使用過去簡單式。" },
-      { c: 0, q: "She ____ here for five years by the end of next month.", o: ["will work", "works", "is working", "will have worked"], a: 3, e: "by + 未來時間 (到未來某時為止)，搭配未來完成式 (will have + Vp.p.)。" },
-      { c: 0, q: "Who ____ the window? It's broken now.", o: ["breaks", "broke", "has broken", "is breaking"], a: 1, e: "打破窗戶是過去發生的單一事件，用過去簡單式 (broke)。" },
-      { c: 0, q: "I ____ you as soon as I get home.", o: ["call", "called", "will call", "have called"], a: 2, e: "as soon as 引導的時間子句用現在式 (get)，主要子句仍須用未來式 (will call)。" },
-      { c: 0, q: "Have you ever ____ to London?", o: ["go", "went", "been", "gone"], a: 2, e: "Have you ever been to...? 表「曾經去過...嗎？(經驗)」。" },
-      { c: 0, q: "Next year, my sister ____ 15 years old.", o: ["is", "was", "has been", "will be"], a: 3, e: "描述未來發生的事實 (明年 15 歲)，用未來簡單式 (will be)。" },
-      { c: 0, q: "I ____ this movie before. Let's watch something else.", o: ["see", "saw", "have seen", "am seeing"], a: 2, e: "before (以前) 表經驗，常搭配現在完成式 (have seen)。" },
-      { c: 0, q: "The train ____ at 9:00 AM every day.", o: ["leave", "leaves", "left", "is leaving"], a: 1, e: "every day 表習慣性或規律性的動作，用現在簡單式。" },
-      { c: 0, q: "I ____ my finger! It hurts a lot.", o: ["cut", "was cutting", "have cut", "had cut"], a: 2, e: "手指切到是剛發生的事，且對現在造成影響 (很痛)，用現在完成式。" },
-      { c: 0, q: "He usually ____ to work, but today he is taking the bus.", o: ["drive", "drives", "drove", "is driving"], a: 1, e: "usually 表平常的習慣，用現在簡單式 (drives)。" },
-      { c: 0, q: "They ____ each other for 10 years.", o: ["know", "knew", "have known", "are knowing"], a: 2, e: "for 10 years 表持續的狀態，用現在完成式。know 不用進行式。" },
-      { c: 0, q: "It ____ a lot in Taipei in winter.", o: ["rain", "rains", "rained", "is raining"], a: 1, e: "描述氣候等客觀事實，用現在簡單式。" },
-      { c: 0, q: "He said that he ____ his keys the day before.", o: ["lost", "loses", "has lost", "had lost"], a: 3, e: "他說 (said 過去式) 之前弄丟了鑰匙 (過去的過去)，用過去完成式。" },
-      { c: 0, q: "I ____ to music right now.", o: ["listen", "listened", "am listening", "have listened"], a: 2, e: "right now 提示現在正在進行的動作，用 am listening。" },
-      { c: 0, q: "Tom ____ TV when his mother came back.", o: ["watches", "watched", "was watching", "has watched"], a: 2, e: "媽媽回來(短暫)時，Tom正在看電視(持續)，用過去進行式。" },
-      { c: 0, q: "My father ____ a new car next week.", o: ["buys", "bought", "will buy", "has bought"], a: 2, e: "next week 是未來時間，用未來式 will buy 或 is going to buy。" },
-      { c: 0, q: "Since she left, I ____ very sad.", o: ["am", "was", "have been", "will be"], a: 2, e: "since (自從) + 過去時間點，主要子句搭配現在完成式 (have been)。" },
-      { c: 0, q: "I ____ homework at 8:00 last night.", o: ["do", "did", "was doing", "have done"], a: 2, e: "過去明確的時間點 (昨晚八點)，強調當時正在進行，用過去進行式。" },
-      { c: 0, q: "She ____ to America twice.", o: ["goes", "went", "has gone", "has been"], a: 3, e: "表示去過的經驗(已回來)，用 has been to。" },
-      { c: 0, q: "The meeting ____ before I got to the office.", o: ["started", "starts", "has started", "had started"], a: 3, e: "我抵達(過去)之前會議就開始了(過去的過去)，用 had started。" },
-      { c: 0, q: "They ____ tennis every Sunday morning.", o: ["play", "plays", "played", "are playing"], a: 0, e: "every Sunday 習慣動作，主詞複數，用原形 play。" },
-      { c: 0, q: "Look at the dark clouds! It ____ rain soon.", o: ["will", "is going to", "must", "can"], a: 1, e: "有跡象(烏雲)顯示即將發生的事，用 is going to 最適合。" },
-      { c: 0, q: "I ____ the book, so I can lend it to you.", o: ["read", "readed", "have read", "was reading"], a: 2, e: "我已經讀完了(對現在有影響：可以借你)，用現在完成式。" },
-
-      // 擴充：2. 三大子句
-      { c: 1, q: "I know the man ____ is standing there.", o: ["which", "who", "whom", "whose"], a: 1, e: "先行詞為人(the man)，且在關係子句作主詞，用 who。" },
-      { c: 1, q: "The book ____ I bought yesterday is very interesting.", o: ["who", "which", "where", "whose"], a: 1, e: "先行詞為物(the book)，用 which 或 that。" },
-      { c: 1, q: "Do you know ____?", o: ["where does he live", "where he lives", "he lives where", "where is he living"], a: 1, e: "名詞子句當受詞，須用直述句語序：疑問詞+主詞+動詞。" },
-      { c: 1, q: "She asked me ____ I wanted to eat for dinner.", o: ["that", "which", "what", "who"], a: 2, e: "問「想要吃什麼」，疑問詞用 what 領導名詞子句。" },
-      { c: 1, q: "The house ____ roof is red is mine.", o: ["who", "which", "that", "whose"], a: 3, e: "表示「那個房子的(屋頂)」，所有格關係代名詞用 whose。" },
-      { c: 1, q: "He didn't go to school ____ he was sick.", o: ["because", "so", "but", "although"], a: 0, e: "because 引導原因副詞子句。Because和So不能連用。" },
-      { c: 1, q: "____ she is rich, she is not happy.", o: ["Because", "Although", "But", "So"], a: 1, e: "Although (雖然) 引導讓步副詞子句。Although和But不能連用。" },
-      { c: 1, q: "I am not sure ____ he will come tomorrow.", o: ["that", "whether", "weather", "which"], a: 1, e: "whether (是否) 引導名詞子句，表示不確定。" },
-      { c: 1, q: "Is this the park ____ you play basketball?", o: ["which", "that", "where", "when"], a: 2, e: "先行詞為地方，且子句缺地方副詞 (in the park)，用關係副詞 where。" },
-      { c: 1, q: "The boy ____ you met yesterday is my cousin.", o: ["who", "which", "whose", "where"], a: 0, e: "先行詞為人，作受詞用 whom，口語也常用 who 或省略。" },
-      { c: 1, q: "Please tell me ____ happened.", o: ["what", "that", "which", "who"], a: 0, e: "what 兼作疑問詞與主詞，引導名詞子句「發生了什麼事」。" },
-      { c: 1, q: "Can you tell me ____ the station is?", o: ["where", "what", "which", "that"], a: 0, e: "問地方，用 where 引導間接問句：where + 主詞 + 動詞。" },
-      { c: 1, q: "He is the best student ____ I have ever taught.", o: ["who", "whom", "that", "which"], a: 2, e: "先行詞有最高級 (the best) 修飾時，關代強烈建議/必須用 that。" },
-      { c: 1, q: "This is the same watch ____ I lost.", o: ["which", "that", "where", "who"], a: 1, e: "先行詞前有 the same (同樣的) 修飾，關代用 that。" },
-      { c: 1, q: "We went to bed early ____ we were very tired.", o: ["although", "because", "so", "but"], a: 1, e: "because 表原因「因為我們很累」。" },
-      { c: 1, q: "I won't leave ____ you come back.", o: ["when", "until", "because", "if"], a: 1, e: "until (直到...為止)，not... until (直到...才)。" },
-      { c: 1, q: "I wonder ____.", o: ["who is she", "who she is", "she is who", "is she who"], a: 1, e: "間接問句語序：疑問詞 + 主詞 + 動詞 (who she is)。" },
-      { c: 1, q: "Tell me the reason ____ you were late.", o: ["what", "which", "where", "why"], a: 3, e: "先行詞為 reason (原因)，關係副詞用 why (= for which)。" },
-      { c: 1, q: "I like the gifts ____ my friends gave me.", o: ["who", "which", "where", "what"], a: 1, e: "先行詞為物 (gifts)，關代用 which 或 that。" },
-      { c: 1, q: "The dog ____ tail is long is very cute.", o: ["who", "which", "whose", "that"], a: 2, e: "表示所有格「狗的尾巴」，用 whose。" },
-      { c: 1, q: "We all know ____ the earth is round.", o: ["what", "which", "that", "who"], a: 2, e: "that 引導名詞子句當受詞，無意義且可省略。" },
-      { c: 1, q: "Do you remember the time ____ we first met?", o: ["which", "where", "when", "that"], a: 2, e: "先行詞為時間 (the time)，關係副詞用 when。" },
-      { c: 1, q: "I don't care ____ he says.", o: ["that", "which", "what", "where"], a: 2, e: "what 引導名詞子句「他說的話」，what = the thing(s) which。" },
-      { c: 1, q: "This is the place ____ I was born.", o: ["which", "that", "where", "when"], a: 2, e: "先行詞為地方，關係副詞用 where (= in which)。" },
-      { c: 1, q: "I will call you ____ I arrive at the hotel.", o: ["because", "although", "when", "but"], a: 2, e: "when (當...時) 引導時間副詞子句。" },
-      { c: 1, q: "The true problem is ____ we don't have enough time.", o: ["what", "which", "that", "where"], a: 2, e: "that 引導名詞子句作主詞補語(在be動詞後)，不可省略。" },
-      { c: 1, q: "Do you know the girl ____ is dancing on the stage?", o: ["which", "whom", "who", "whose"], a: 2, e: "先行詞為人，子句缺主詞，關代用 who。" },
-      { c: 1, q: "He studied hard ____ he could pass the exam.", o: ["because", "so that", "although", "when"], a: 1, e: "so that (為了...) 引導目的副詞子句。" },
-      { c: 1, q: "The watch ____ I bought yesterday was broken.", o: ["who", "which", "where", "whose"], a: 1, e: "先行詞為物，關代用 which/that。" },
-      { c: 1, q: "I asked him ____ he wanted a cup of coffee.", o: ["that", "what", "if", "which"], a: 2, e: "if 在此作「是否」解，引導名詞子句當 asked 的受詞。" },
-
-      // 擴充：3. 被動語態
+      { c: 2, q: "Tour Guide: Welcome to our country! As you may know, English ____ in many popular tourist spots here, so you don't need to worry about communication.", o: ["speaks", "is speaking", "is spoken", "has spoken"], a: 2, e: "長句情境題。英文是被說的，且導遊在描述一般客觀事實，故用現在簡單被動語態 (is spoken)。" },
+      { c: 2, q: "Teacher: Who broke the window in the classroom?\nStudent: I'm not sure, but I heard that it ____ by a boy from another class yesterday afternoon.", o: ["breaks", "broke", "is broken", "was broken"], a: 3, e: "對話情境題。yesterday afternoon 提示過去式，窗戶是被打破的，故用過去簡單被動語態 (was broken)。" },
+      { c: 2, q: "Leo: How are you going to school tomorrow? Your bike is broken, right?\nSam: Don't worry. My dad said it ____ by the mechanic tomorrow morning.", o: ["will repair", "will be repaired", "is repairing", "repairs"], a: 1, e: "tomorrow 提示未來式，腳踏車將被修理，助動詞被動語態為 (will be + Vp.p.)。" },
+      { c: 2, q: "Manager: Did you send the important letter to our client?\nSecretary: Yes, sir. It ____ already. I sent it right after our meeting this morning.", o: ["has sent", "was sent", "has been sent", "is sending"], a: 2, e: "already (已經) 常配完成式，且信是被寄出的，現在完成式被動為 (have/has been + Vp.p.)。" },
+      { c: 2, q: "Employee: Excuse me, boss. It's getting late. Must the work ____ today? I'm feeling a bit sick.\nBoss: Yes, it's urgent. We need it by 5 PM.", o: ["finish", "finishes", "finished", "be finished"], a: 3, e: "情態助動詞 (Must/Can/Should) 之後的被動語態，必須要用原形 be + Vp.p.。" },
+      { c: 2, q: "Tom: Why were you so tired yesterday evening?\nJerry: I made a big mistake at home, so I was made ____ the floor of the whole house by my mother.", o: ["sweep", "to sweep", "sweeping", "swept"], a: 1, e: "會考超高頻陷阱！使役動詞 make 在主動時接受詞接原形，但變成「被動語態」(was made) 時，必須加回 to，變成 to V。" },
+      { c: 2, q: "Guest: Wow, the chocolate cake looks amazing! Did you make it yourself?\nHost: Yes! And trust me, it ____ as delicious as it looks.", o: ["is tasted", "tastes", "is tasting", "tasted"], a: 1, e: "觀念題。連綴動詞 (taste, sound, look...) 「沒有」被動語態！直接用主動形式即可。" },
+      { c: 2, q: "Principal: To make our campus greener and more beautiful, a lot of trees ____ around the school buildings every year.", o: ["are planted", "were planted", "will be planted", "have been planted"], a: 0, e: "every year 提示現在簡單式，複數主詞 trees 搭配 are + Vp.p. (are planted)。" },
+      { c: 2, q: "Mom: Why is it so smelly in the kitchen?\nDad: Oh, sorry. The garbage ____ out right now by Jason. The smell will be gone soon.", o: ["is taking", "is being taken", "has been taken", "was taken"], a: 1, e: "right now 提示現在進行式，現在進行式的被動語態為 (is/are/am + being + Vp.p.)。" },
+      { c: 2, q: "Nurse: How is the little baby doing while his parents are working abroad?\nDoctor: He is fine. He is taken good care ____ by his loving grandmother.", o: ["for", "with", "of", "to"], a: 2, e: "片語動詞 take care of 變被動時，介系詞 of 必須保留，不可省略。" },
+      { c: 2, q: "Student: This novel is so interesting! Who wrote it?\nLibrarian: It was written ____ a famous author who won a national prize last year.", o: ["with", "by", "in", "from"], a: 1, e: "被動語態中，表示「被...人(執行者)」時，使用介系詞 by。" },
+      { c: 2, q: "Police: When did you realize that your money was gone?\nVictim: I wanted to buy a drink, and then I found that my wallet ____ on my way home.", o: ["stole", "is stolen", "was stolen", "has stolen"], a: 2, e: "錢包是在回家的路上「被偷的」(過去發生的單一事件)，用過去簡單被動。" },
+      { c: 2, q: "Student: This math problem is too difficult. I've spent an hour on it!\nTeacher: Actually, if you use the new formula I taught you, it can ____ easily.", o: ["solve", "be solved", "is solved", "solving"], a: 1, e: "助動詞 can + 被動語態 (be + Vp.p.)。" },
+      { c: 2, q: "Citizen: The traffic near our neighborhood is terrible during rush hours.\nMayor: I'm sorry to say that nothing ____ done to solve the problem yet, but we are making a plan.", o: ["has", "has been", "is", "was"], a: 1, e: "yet 提示現在完成式，Nothing 視為單數，且為被動，故用 has been done。" },
+      { c: 2, q: "Hotel Manager: The VIP guests are arriving at 3 PM today. Remember, their room ____ before they step into the hotel.", o: ["will clean", "must be cleaned", "must clean", "cleaned"], a: 1, e: "房間「必須被清理」，助動詞 must + be + Vp.p.。" },
+      { c: 2, q: "Customer: These running shoes are so comfortable. Are they imported from the USA?\nClerk: Actually, they ____ in Taiwan. Our country makes great shoes!", o: ["make", "made", "are made", "are making"], a: 2, e: "鞋子是「被製造」的，描述一般事實用現在簡單被動語態 (are made)。" },
+      { c: 2, q: "Wife: Honey, can you drive me to the supermarket?\nHusband: I can't. My car ____ at the garage right now. Let's take a taxi.", o: ["washed", "is washing", "was washed", "is being washed"], a: 3, e: "right now 提示現在進行式，車子「正在被洗」，用 is being + Vp.p.。" },
+      { c: 2, q: "Teacher: Please remember that this science report is very important. It ____ finished by tomorrow afternoon, or you will fail the class.", o: ["will", "will be", "is", "has been"], a: 1, e: "by tomorrow (到明天為止) 提示未來式，作業將會「被完成」，用 will be + Vp.p.。" },
+      { c: 2, q: "Detective: Did anyone see the missing boy yesterday?\nWitness: Yes, he was seen ____ the convenience store at the corner around 7 PM.", o: ["enter", "entered", "to enter", "enters"], a: 2, e: "進階會考題！感官動詞改為被動語態 (was seen) 時，後方的動作須使用「不定詞 to V」。(為避免 V-ing 爭議，選項設計為 to enter)" },
+      { c: 2, q: "Fan: I really want to go to Mayday's concert! Do you have any extra tickets?\nFriend: Sorry, all the tickets ____ out in ten minutes yesterday morning.", o: ["sell", "sold", "were sold", "are sold"], a: 2, e: "yesterday 提示過去式，票是「被賣光」的，用 were sold。" },
       { c: 2, q: "The bridge ____ next year.", o: ["builds", "built", "will be built", "is building"], a: 2, e: "橋將被建造，且有 next year，用未來式被動 (will be + Vp.p.)。" },
       { c: 2, q: "The letter ____ by him yesterday.", o: ["writes", "wrote", "was written", "is written"], a: 2, e: "yesterday 提示過去式，信是被寫的，用過去簡單被動。" },
       { c: 2, q: "English ____ all over the world.", o: ["speaks", "is speaking", "has spoken", "is spoken"], a: 3, e: "英文是被說的，描述事實用現在簡單被動 (is spoken)。" },
@@ -353,7 +134,7 @@
       { c: 2, q: "The homework ____ already.", o: ["has done", "has been done", "is doing", "was doing"], a: 1, e: "already 提示完成式，作業「已經被完成」，用 has been done。" },
       { c: 2, q: "A new hospital ____ in our town recently.", o: ["has built", "was building", "has been built", "builds"], a: 2, e: "recently (最近) 提示現在完成式，醫院是被建的，用 has been built。" },
       { c: 2, q: "The room ____ every day.", o: ["cleans", "is cleaned", "cleaned", "has cleaned"], a: 1, e: "every day 提示現在簡單式，房間是被清理的，用 is cleaned。" },
-      { c: 2, q: "He was seen ____ the room.", o: ["enter", "entered", "to enter", "entering"], a: 2, e: "感官動詞被動語態，後面的原形動詞要還原成不定詞 to V。" },
+      { c: 2, q: "He was seen ____ the room.", o: ["enter", "entered", "to enter", "enters"], a: 2, e: "感官動詞改為被動語態時，後方的動作須使用「不定詞 to V」。" },
       { c: 2, q: "We are interested ____ this story.", o: ["by", "with", "in", "about"], a: 2, e: "be interested in (對...感興趣)，為固定介系詞搭配。" },
       { c: 2, q: "The desk is made ____ wood.", o: ["by", "of", "from", "with"], a: 1, e: "物理變化(仍看得出材質)用 be made of；化學變化用 be made from。" },
       { c: 2, q: "Wine is made ____ grapes.", o: ["of", "from", "by", "in"], a: 1, e: "化學變化(看不出原材質)用 be made from。" },
@@ -375,12 +156,28 @@
       { c: 2, q: "The house was painted ____ white.", o: ["by", "with", "in", "(不填)"], a: 3, e: "paint + 物 + 顏色 (被動: 物 was painted + 顏色)，不需要介系詞。" },
       { c: 2, q: "Computers are widely ____ today.", o: ["use", "used", "using", "uses"], a: 1, e: "電腦被廣泛使用，be + Vp.p. (used)。" },
       { c: 2, q: "The thief was caught ____ the police.", o: ["with", "by", "from", "for"], a: 1, e: "小偷是被警察(執行者)抓到的，用 by。" },
-      
-      // ==========================================
-      // 第二波擴充題庫：單元 3~5 各增補 30 題 (達到 50 題)
-      // ==========================================
-      
-      // 擴充：4. 特殊動詞 (感官、使役、連綴)
+
+      // 4. 特殊動詞 (感官、使役、連綴)
+      { c: 3, q: "Witness: I was standing at the corner waiting for the bus.\nPolice: And what did you see?\nWitness: I saw a young boy ____ the street carelessly just now, and then a motorcycle almost hit him.", o: ["cross", "crossed", "to cross", "crosses"], a: 0, e: "感官動詞 (see/hear/watch) + 受詞 + 原形動詞 (強調事實/全程) 或 V-ing (強調正在進行)。選項中只有 cross。" },
+      { c: 3, q: "Eric: Do you want to go to the movies with us this Saturday?\nKevin: I'd love to, but I can't. My mom makes me ____ my bedroom every weekend before I can go out.", o: ["clean", "to clean", "cleaning", "cleaned"], a: 0, e: "使役動詞 (make/have/let) + 受詞 + 原形動詞 (主動)。" },
+      { c: 3, q: "Little Girl: Mom, I don't want to take this medicine. It tastes ____!\nMom: I know, honey, but it will help you get well soon.", o: ["terrible", "terribly", "badly", "well"], a: 0, e: "連綴動詞 (taste/smell/sound/look/feel) 後面必須接「形容詞」作為主詞補語。" },
+      { c: 3, q: "Neighbor: Wow, your car looks so shiny and clean today!\nMr. Wang: Thanks! I was too busy this week, so I had it ____ at the car wash center yesterday.", o: ["wash", "to wash", "washing", "washed"], a: 3, e: "使役動詞 have + 物 (car) + Vp.p. (過去分詞)，表示讓某物「被」做..." },
+      { c: 3, q: "Father: I don't think studying art is a good idea for Jason's future.\nMother: He is already eighteen. We should let him ____ what he really wants for his life.", o: ["do", "does", "to do", "doing"], a: 0, e: "使役動詞 let + 受詞 + 原形動詞。" },
+      { c: 3, q: "Customer: What is playing on the radio right now? The music sounds so ____.\nCafe Owner: It's a classical piano piece by Chopin. I'm glad you like it.", o: ["beautiful", "beautifully", "wonderfully", "badly"], a: 0, e: "連綴動詞 sound 後接形容詞。" },
+      { c: 3, q: "Sister: I couldn't sleep well last night.\nBrother: Why? Did you hear someone ____ the piano in the next room in the middle of the night?", o: ["play", "played", "to play", "plays"], a: 0, e: "感官動詞 hear + 受詞 + 原形動詞/V-ing。" },
+      { c: 3, q: "Student: Did you watch the news about the brave firefighter who saved three kids?\nTeacher: Yes, the story of his courage made us all ____.", o: ["sadly", "sad", "to sad", "saddened"], a: 1, e: "make + 受詞 + 形容詞 (使...變得...)。sad 是形容詞。" },
+      { c: 3, q: "Jane: Do you think this color is too bright for a formal party?\nMary: Not at all! You look ____ in that red dress. Everyone will look at you.", o: ["beautifully", "beautiful", "beauty", "to be beautiful"], a: 1, e: "連綴動詞 look 後接形容詞 beautiful。" },
+      { c: 3, q: "Principal: How did Mr. Lee improve his class's grades?\nDirector: He has his own ways. He finally got all the students ____ their homework on time every day.", o: ["finish", "to finish", "finishing", "finished"], a: 1, e: "get 雖然有使役的意味，但用法不同：get + 人 + to V (要求某人去做某事)。" },
+      { c: 3, q: "Son: Mom, did you forget to turn off the stove?\nMom: Oh my goodness! I smelled something ____ in the kitchen. The soup is ruined!", o: ["burn", "burning", "burned", "to burn"], a: 1, e: "感官動詞 smell + 受詞 + V-ing (強調當下正在燃燒的狀態)。" },
+      { c: 3, q: "Patient: Doctor, when I heard the loud noise from the machine, I suddenly felt my heart ____ really fast. Is it serious?", o: ["beat", "beaten", "to beat", "beats"], a: 0, e: "感官動詞 feel + 受詞 + 原形動詞/V-ing。" },
+      { c: 3, q: "Newscaster: Please remember to bring a heavy jacket if you are going out tonight. The weather is getting ____ because of the cold front.", o: ["cold and cold", "colder and colder", "more and more cold", "coldly"], a: 1, e: "get/become (連綴動詞表變化) + 比較級 and 比較級，表示「越來越...」。" },
+      { c: 3, q: "Owner: Please hold the leash tightly while I open the front gate. Don't let the dog ____ away, or he might get lost.", o: ["run", "to run", "running", "ran"], a: 0, e: "let + 受詞 + 原形動詞。" },
+      { c: 3, q: "Colleague: Wow, Linda! You look different today. Did you change your hairstyle?\nLinda: Yes, I had my hair ____ at the new salon this morning.", o: ["cut", "to cut", "cutting", "cuts"], a: 0, e: "have + 物 (hair) + Vp.p. (頭髮是被剪的，cut的過去分詞還是cut)。" },
+      { c: 3, q: "Boss: Why didn't you reply to my email last night?\nWorker: I'm sorry, my laptop was broken. I just had it ____ by the IT department yesterday afternoon.", o: ["fix", "fixed", "fixing", "to fix"], a: 1, e: "have + 物 + Vp.p.：使役動詞用法，表示讓某物「被」處理。" },
+      { c: 3, q: "Brother: I'm starving! What's for dinner?\nSister: I just ordered a seafood pizza, and it smells so ____. I can't wait to take a bite!", o: ["good", "well", "badly", "goodly"], a: 0, e: "連綴動詞 smell 後面必須接形容詞 (good)。well 當形容詞只有「健康的」之意。" },
+      { c: 3, q: "Teacher: Did anyone notice the classroom ____ just a moment ago?\nStudent: Yes! I think it was a small earthquake.", o: ["shook", "to shake", "shaking", "shaken"], a: 2, e: "notice (注意到) 也是感官動詞，後接原形動詞或 V-ing (shaking)。" },
+      { c: 3, q: "Manager: The construction outside is too loud. Please keep the door ____ so we can focus on the meeting.", o: ["close", "closing", "closed", "to close"], a: 2, e: "keep + 受詞 + 受詞補語。門是被關著的狀態(受詞補語用過去分詞 closed)，語意為把噪音擋在外面。" },
+      { c: 3, q: "Coach: We just won the national championship!\nPlayer: That's amazing! The great news made everyone in our school very ____.", o: ["happily", "happiness", "happy", "to be happy"], a: 2, e: "make + 受詞 + 形容詞 (使...變得...)。happy 是形容詞。" },
       { c: 3, q: "The milk smells ____. You shouldn't drink it.", o: ["bad", "badly", "well", "worse"], a: 0, e: "smell 是連綴動詞，後面必須接形容詞 bad。" },
       { c: 3, q: "I watched the old man ____ the street slowly.", o: ["cross", "to cross", "crossed", "crosses"], a: 0, e: "感官動詞 watch + 受詞 + 原形動詞 (強調看見整個過程)。" },
       { c: 3, q: "Please help me ____ the heavy box.", o: ["carry", "carried", "carrying", "carries"], a: 0, e: "help + 受詞 + (to) V。這裡省略了 to，用原形動詞 carry。" },
@@ -412,7 +209,27 @@
       { c: 3, q: "The weather is becoming ____.", o: ["warmer", "warmly", "to warm", "warmth"], a: 0, e: "become (變成) 連綴動詞 + 比較級形容詞。" },
       { c: 3, q: "Please leave the door ____.", o: ["open", "to open", "opened", "opening"], a: 0, e: "leave + 受詞 + 形容詞 (讓門保持開著的狀態)。open 在此為形容詞。" },
 
-      // 擴充：5. 花費動詞 (spend, take, cost, pay)
+      // 5. 花費動詞 (spend, take, cost, pay)
+      { c: 4, q: "Mom: How much did you ____ for this new jacket? It looks really expensive.\nSon: It's not that bad. I got it on sale for only 800 NT dollars.", o: ["spend", "take", "cost", "pay"], a: 3, e: "對話情境題。主詞是 you (人)，搭配介系詞 for，表示為某物付錢，用 pay。" },
+      { c: 4, q: "Lisa: I really want to buy that smartphone, but it ____ too much money. I don't have enough savings.\nDad: Maybe you can save your allowance for a few more months.", o: ["spends", "takes", "costs", "pays"], a: 2, e: "主詞是 it (代稱手機，為事物)，花費金錢用 costs。" },
+      { c: 4, q: "Tom: Writing this science report ____ me almost three days. I'm so exhausted.\nTeacher: But you did a great job! Your hard work paid off.", o: ["spent", "took", "cost", "paid"], a: 1, e: "動名詞 Writing... 作主詞視為事物，花費時間用 took (過去式)。" },
+      { c: 4, q: "Clerk: How would you like to ____ for the groceries, sir? In cash or by credit card?\nCustomer: I'll use my credit card, please.", o: ["spend", "take", "cost", "pay"], a: 3, e: "搭配介系詞 for，且主詞是 you，用 pay。" },
+      { c: 4, q: "Wife: You shouldn't ____ so much time playing video games on weekends.\nHusband: You're right. I'll take the kids to the park this afternoon.", o: ["spend", "take", "cost", "pay"], a: 0, e: "主詞是 You (人)，花費時間且後面接 V-ing (playing)，用 spend。" },
+      { c: 4, q: "Tourist: Excuse me, how long does it ____ to walk from here to the national museum?\nPolice: About fifteen minutes if you walk fast.", o: ["spend", "take", "cost", "pay"], a: 1, e: "How long 問時間長度，且主詞為虛主詞 it，用 take。" },
+      { c: 4, q: "Friend A: Did you hear about Kevin? He ____ a fortune on his new sports car.\nFriend B: Yeah, he has been saving up for years just to get it.", o: ["spent", "took", "cost", "paid"], a: 0, e: "主詞是 He (人)，搭配介系詞 on，花費金錢用 spend (過去式 spent)。" },
+      { c: 4, q: "Husband: Buying this house will ____ us a lot of money, but it's worth it for our family.\nWife: I agree. The location is perfect.", o: ["spend", "take", "cost", "pay"], a: 2, e: "動名詞 Buying... 作主詞視為事物，花費金錢用 cost。" },
+      { c: 4, q: "Student: ____ takes a lot of practice to speak English fluently like a native speaker.\nTeacher: Exactly! Practice makes perfect.", o: ["It", "That", "This", "He"], a: 0, e: "It takes + 資源/心力 + to V。It 作為虛主詞。" },
+      { c: 4, q: "Daughter: Mom, can you teach me how to bake a chocolate cake?\nMom: Sure, but it will ____ us the whole afternoon. Are you ready?", o: ["spend", "take", "cost", "pay"], a: 1, e: "主詞是 it，花費時間 (the whole afternoon) 用 take。" },
+      { c: 4, q: "Customer: This watch is beautiful, but the price tag is missing. How much does it ____?\nClerk: Let me check... It's three thousand dollars.", o: ["spend", "take", "cost", "pay"], a: 2, e: "主詞是 it (代稱手錶)，問花費多少錢用 cost。" },
+      { c: 4, q: "Son: I want to go to the concert, but I don't have enough money.\nDad: If you help me wash the car, I will ____ for your ticket.", o: ["spend", "take", "cost", "pay"], a: 3, e: "主詞是 I (人)，搭配介系詞 for，用 pay。" },
+      { c: 4, q: "Interviewer: What do you usually do in your free time?\nActor: I enjoy reading. I usually ____ at least two hours a day reading novels.", o: ["spend", "take", "cost", "pay"], a: 0, e: "主詞是 I (人)，花費時間且後接 V-ing (reading)，用 spend。" },
+      { c: 4, q: "Jane: Learning a new language ____ a lot of time and effort, doesn't it?\nMark: Yes, but it opens up a whole new world for you.", o: ["spends", "takes", "costs", "pays"], a: 1, e: "動名詞 Learning... 作主詞視為事物，花費時間與心力用 takes。" },
+      { c: 4, q: "Guest: This meal is wonderful. Let me ____ for the dinner tonight.\nHost: No way! You are my guest. I've already paid.", o: ["spend", "take", "cost", "pay"], a: 3, e: "主詞是 me (人)，搭配介系詞 for，用 pay。" },
+      { c: 4, q: "Reporter: How did the city build this amazing park?\nMayor: The government ____ millions of dollars and five years completing this project.", o: ["spent", "took", "cost", "paid"], a: 0, e: "主詞 The government (視為人的集合體)，花費金錢與時間，且後接 V-ing (completing)，用 spent。" },
+      { c: 4, q: "Mother: Don't ____ all your pocket money on comic books and snacks. You should save some.\nSon: Okay, Mom. I'll put half of it in my piggy bank.", o: ["spend", "take", "cost", "pay"], a: 0, e: "祈使句主詞隱含為 You，搭配介系詞 on，花費金錢用 spend。" },
+      { c: 4, q: "Passenger: How much does it ____ to take a taxi from the airport to the city center?\nDriver: It's a flat rate of 1,000 NT dollars.", o: ["spend", "take", "cost", "pay"], a: 2, e: "主詞是 it (虛主詞)，問花費多少錢用 cost。" },
+      { c: 4, q: "Manager: We need to finish this report by Friday.\nEmployee: But it usually ____ us at least a week to collect all the data.", o: ["spends", "takes", "costs", "pays"], a: 1, e: "主詞是 it (虛主詞)，花費時間用 takes。" },
+      { c: 4, q: "Customer: I love this dress, but I only have 500 dollars with me.\nClerk: I'm sorry, miss. It will ____ you 800 dollars.", o: ["spend", "take", "cost", "pay"], a: 2, e: "主詞是 It (代稱洋裝)，花費某人多少錢用 cost。" },
       { c: 4, q: "How much money did you ____ on this game?", o: ["spend", "take", "cost", "pay"], a: 0, e: "主詞是 you(人)，介系詞用 on，搭配 spend。" },
       { c: 4, q: "Doing exercise every day ____ him a lot of time.", o: ["takes", "spends", "costs", "pays"], a: 0, e: "V-ing 作主詞視為事物，花費時間用 takes。" },
       { c: 4, q: "____ took me three days to read the novel.", o: ["It", "That", "This", "He"], a: 0, e: "It takes + 人 + 時間 + to V。It 是虛主詞。" },
@@ -444,7 +261,27 @@
       { c: 4, q: "Reading this book ____ her three weeks.", o: ["took", "spent", "cost", "paid"], a: 0, e: "V-ing 作主詞視為事物，花費時間用 take (過去式 took)。" },
       { c: 4, q: "I need to ____ the rent by tomorrow.", o: ["pay", "spend", "cost", "take"], a: 0, e: "主詞是人，支付款項(the rent)直接用 pay。" },
 
-      // 擴充：6. 情緒形容詞
+      // 6. 情緒形容詞
+      { c: 5, q: "Mike: Did you watch the basketball game last night? It was so ____!\nJohn: Yes! Both teams played really well until the last second.", o: ["excited", "exciting", "excite", "excites"], a: 1, e: "比賽 (事物) 令人感到刺激興奮，修飾事物用 V-ing (exciting)。" },
+      { c: 5, q: "Alice: Why does Peter look so ____ today?\nBob: He failed his math test again, even though he studied all night.", o: ["disappointed", "disappointing", "disappoint", "disappoints"], a: 0, e: "人 (Peter) 感到失望，修飾人的情緒用 V-ed (disappointed)。" },
+      { c: 5, q: "Mom: Turn off the TV and go to bed. That ghost movie is too ____ for a child.\nSon: But I want to know the ending!", o: ["scared", "scaring", "scare", "scary"], a: 3, e: "形容事物 (電影) 本身令人害怕，習慣使用形容詞 scary。" },
+      { c: 5, q: "Teacher: Are you ____ in joining the science club this semester?\nStudent: Yes! I love doing experiments.", o: ["interest", "interested", "interesting", "interests"], a: 1, e: "人對...感到興趣，用 V-ed。be interested in 為固定用法。" },
+      { c: 5, q: "Friend A: The news about the massive earthquake is really ____.\nFriend B: I know. I feel so sorry for the victims.", o: ["shocked", "shocking", "shock", "shocks"], a: 1, e: "新聞 (事物) 令人震驚，用 V-ing (shocking)。" },
+      { c: 5, q: "Tourist: The view from the top of Taipei 101 is absolutely ____!\nGuide: Indeed. You can see the whole city clearly from here.", o: ["amazed", "amazing", "amaze", "amazes"], a: 1, e: "景色 (事物) 令人驚嘆，用 V-ing (amazing)。" },
+      { c: 5, q: "Jane: I am getting ____ of eating hamburgers every day. Can we have something else?\nMark: Sure. Let's go get some sushi.", o: ["tired", "tiring", "tire", "tires"], a: 0, e: "人對...感到厭煩，用 V-ed。be tired of... (對...感到厭倦)。" },
+      { c: 5, q: "Son: Mom, I'm ____! There's nothing to do at home and all my friends are busy.\nMom: Why don't you read a book or help me clean the house?", o: ["bored", "boring", "bore", "bores"], a: 0, e: "人感到無聊，修飾情緒用 V-ed (bored)。" },
+      { c: 5, q: "Audience A: The ending of the movie was so ____. I couldn't stop crying.\nAudience B: Me too. The actor's performance was incredible.", o: ["touched", "touching", "touch", "touches"], a: 1, e: "結局 (事物) 令人感動，用 V-ing (touching)。" },
+      { c: 5, q: "Student: I am so ____ about the graduation trip next week! I've packed my bags already.\nTeacher: It's good to see you so happy.", o: ["excited", "exciting", "excite", "excites"], a: 0, e: "人對...感到興奮，用 V-ed。be excited about... 為固定用法。" },
+      { c: 5, q: "Daughter: Dad, I'm ____ of the dark. Can you leave the door open?\nDad: Don't worry, sweetie. There's nothing in the dark.", o: ["terrified", "terrifying", "terrify", "terrifies"], a: 0, e: "人感到極度害怕，用 V-ed。be terrified of... (對...感到恐懼)。" },
+      { c: 5, q: "Boss: I am very ____ with your presentation today. You did a great job!\nEmployee: Thank you, sir. I spent a lot of time preparing for it.", o: ["satisfied", "satisfying", "satisfy", "satisfies"], a: 0, e: "人對...感到滿意，用 V-ed。be satisfied with... (對...滿意)。" },
+      { c: 5, q: "Customer: The instructions for this new smartphone are very ____. I don't know how to set it up.\nClerk: Let me help you with that, sir.", o: ["confused", "confusing", "confuse", "confuses"], a: 1, e: "說明書 (事物) 令人困惑，用 V-ing (confusing)。" },
+      { c: 5, q: "Friend A: Did you see the magic trick? How did he make the bird disappear?\nFriend B: I was totally ____! It was unbelievable.", o: ["amazed", "amazing", "amaze", "amazes"], a: 0, e: "人感到驚奇/驚訝，用 V-ed (amazed)。" },
+      { c: 5, q: "Wife: Listening to soft music after a long day of work is very ____.\nHusband: I agree. It helps me sleep better.", o: ["relaxed", "relaxing", "relax", "relaxes"], a: 1, e: "聽音樂 (事物/事件) 令人放鬆，用 V-ing (relaxing)。" },
+      { c: 5, q: "Son: I didn't win the race, Mom. I feel like a loser.\nMom: Don't be ____. You did your best, and that's what matters.", o: ["disappointed", "disappointing", "disappoint", "disappoints"], a: 0, e: "祈使句，叫某人不要感到失望，修飾人的情緒用 V-ed (disappointed)。" },
+      { c: 5, q: "Interviewer: What is the most ____ experience you've ever had?\nTraveler: Probably skydiving in New Zealand. My heart was beating so fast!", o: ["thrilled", "thrilling", "thrill", "thrills"], a: 1, e: "經驗 (事物) 令人感到刺激/毛骨悚然，用 V-ing (thrilling)。" },
+      { c: 5, q: "Passenger: The train is delayed again! This is really ____.\nStation Staff: We apologize for the inconvenience, sir.", o: ["annoyed", "annoying", "annoy", "annoys"], a: 1, e: "火車誤點這件事 (事物) 令人煩躁，用 V-ing (annoying)。" },
+      { c: 5, q: "Mom: Why is the little girl crying so loudly in the park?\nDad: She got ____ by a big dog that suddenly barked at her.", o: ["frightened", "frightening", "frighten", "frightens"], a: 0, e: "小女孩 (人) 感到害怕，用 V-ed。get frightened by... (被...嚇到)。" },
+      { c: 5, q: "Teacher: The result of the science fair is ____. None of our teams made it to the finals.\nPrincipal: It's a pity, but they will learn from this.", o: ["disappointed", "disappointing", "disappoint", "disappoints"], a: 1, e: "比賽結果 (事物) 令人失望，用 V-ing (disappointing)。" },
       { c: 5, q: "The trip was very ____. We all enjoyed it.", o: ["exciting", "excited", "excite", "excites"], a: 0, e: "旅程(事物)令人興奮，用 V-ing (exciting)。" },
       { c: 5, q: "I am so ____ of spiders.", o: ["scared", "scaring", "scare", "scary"], a: 0, e: "人感到害怕用 V-ed。be scared of (害怕...)。" },
       { c: 5, q: "Are you ____ in learning French?", o: ["interested", "interesting", "interest", "interests"], a: 0, e: "人對...感到興趣用 V-ed。be interested in..." },
@@ -476,11 +313,27 @@
       { c: 5, q: "The view from the mountain top is ____.", o: ["amazing", "amazed", "amaze", "amazes"], a: 0, e: "風景(事物)令人驚嘆，用 V-ing (amazing)。" },
       { c: 5, q: "The boy was ____ to tears by the movie.", o: ["moved", "moving", "move", "moves"], a: 0, e: "人被感動用 V-ed (moved to tears 感動落淚)。" },
 
-      // ==========================================
-      // 第三波擴充題庫：單元 6~9 各增補 30 題 (達到滿編 50 題)
-      // ==========================================
-      
-      // 擴充：6. 句型結構 (附加問句、附和句)
+      // 7. 句型結構 (附加問句、附和句)
+      { c: 6, q: "Teacher: You have finished reading the assigned novel, ____?\nStudent: Yes, I finished it last night. It was a great story.", o: ["have you", "haven't you", "do you", "don't you"], a: 1, e: "附加問句：前面是現在完成式 (have + Vp.p.) 的肯定句，後面須用助動詞 have 的否定 (haven't you)。" },
+      { c: 6, q: "Mom: Let's order some pizza for dinner tonight, ____?\nKids: Yeah! We love pizza!", o: ["will you", "shall we", "do we", "don't we"], a: 1, e: "Let's (讓我們一起...) 開頭的祈使句，附加問句固定使用 shall we?。" },
+      { c: 6, q: "Wife: Honey, remember to pick up the kids after school. Don't be late again, ____?\nHusband: Don't worry, I've set an alarm.", o: ["do you", "don't you", "will you", "shall we"], a: 2, e: "否定祈使句 (Don't...) 的附加問句，一律只能使用 will you?。" },
+      { c: 6, q: "Friend A: I've never been to Europe. I really want to visit Paris someday.\nFriend B: ____. Maybe we can go together next year.", o: ["So have I", "Neither have I", "So do I", "Neither do I"], a: 1, e: "附和句：前面是完成式的否定 (never been)，需用 Neither 附和，並沿用助動詞 have。" },
+      { c: 6, q: "Jack: There is nothing wrong with the computer, ____? It just suddenly shut down.\nTechnician: Let me check the battery first.", o: ["is it", "isn't it", "is there", "isn't there"], a: 2, e: "There 句型的附加問句主詞要沿用 there。nothing 是否定字，故後面用肯定 is there?。" },
+      { c: 6, q: "Student: Teacher, the bell has rung. Let us go out and play, ____?\nTeacher: Okay, but don't run in the hallway.", o: ["shall we", "will you", "do you", "don't we"], a: 1, e: "會考陷阱題！Let us (請求允許我們去...)，這是在請求對方同意，附加問句要用 will you? (和 Let's 的 shall we 不同)。" },
+      { c: 6, q: "Student A: I am really bad at math. I failed the test again.\nStudent B: ____. We should ask the teacher for help.", o: ["So do I", "Neither do I", "So am I", "Neither am I"], a: 2, e: "附和句：前面是 be 動詞的肯定句 (I am...)，需用 So 附和，並沿用 be 動詞 am。" },
+      { c: 6, q: "Sister: Nobody called me while I was taking a shower, ____?\nBrother: No, the phone didn't ring at all.", o: ["did he", "didn't he", "did they", "didn't they"], a: 2, e: "Nobody 表否定，後用肯定。Nobody 的代名詞習慣用 they。過去式用助動詞 did。" },
+      { c: 6, q: "Friend A: Tom seldom hangs out with us recently, ____?\nFriend B: Yeah, he is preparing for his final exams.", o: ["doesn't he", "does he", "isn't he", "is he"], a: 1, e: "seldom (很少) 是隱性否定字，所以前面算否定句，附加問句要用肯定 does he?。" },
+      { c: 6, q: "Clerk: You used to live in Taichung before you moved here, ____?\nCustomer: Yes, I lived there for ten years.", o: ["didn't you", "don't you", "aren't you", "weren't you"], a: 0, e: "used to (過去習慣) 視為過去式一般動詞，附加問句使用 didn't you?。" },
+      { c: 6, q: "Student: I have to turn in the report before Friday, ____?\nTeacher: That's right. No late submissions will be accepted.", o: ["haven't I", "don't I", "do I", "have I"], a: 1, e: "have to (必須) 是一般動詞片語，否定與附加問句要用助動詞 don't (don't I?)。" },
+      { c: 6, q: "Mom: There is a little milk left in the fridge, ____? I need some for my coffee.\nSon: Yes, but only a little bit.", o: ["is it", "isn't it", "is there", "isn't there"], a: 3, e: "a little (有一些) 屬肯定語氣，前半為肯定，故後用否定 isn't there?。" },
+      { c: 6, q: "Brother: Pass me the salt, ____? This soup is a bit tasteless.\nSister: Here you go. Don't put too much.", o: ["do you", "don't you", "will you", "shall we"], a: 2, e: "肯定祈使句的附加問句，習慣使用 will you? (或 won't/would you)。" },
+      { c: 6, q: "Friend A: I can hardly see the words on the blackboard from the back row.\nFriend B: ____. We should ask the teacher to write larger.", o: ["So can I", "Neither can I", "So do I", "Neither do I"], a: 1, e: "hardly (幾乎不) 是隱性否定字，需用 Neither 附和。前面有助動詞 can，後面沿用 can。" },
+      { c: 6, q: "Guest: This soup tastes a little too salty, ____?\nWaiter: I'm sorry, sir. I'll ask the chef to make a new one for you.", o: ["isn't it", "doesn't it", "is it", "does it"], a: 1, e: "tastes 是一般動詞，主詞 This soup 視為 it，附加問句需用助動詞 doesn't it?。" },
+      { c: 6, q: "Wife: You'd better go to bed right now, ____? You look totally exhausted.\nHusband: Yeah, it's been a long day.", o: ["wouldn't you", "hadn't you", "don't you", "didn't you"], a: 1, e: "You'd better 是 You had better 的縮寫，附加問句固定使用 hadn't you?。" },
+      { c: 6, q: "Dad: Open the window to let some fresh air in, ____?\nSon: Sure, Dad. It is a bit stuffy in here.", o: ["do you", "don't you", "will you", "shall we"], a: 2, e: "祈使句的附加問句一律用 will you?。" },
+      { c: 6, q: "Friend A: I didn't watch the soccer game last night. I was too tired.\nFriend B: ____. I fell asleep right after dinner.", o: ["So did I", "Neither did I", "So was I", "Neither was I"], a: 1, e: "否定句附和用 Neither。前面有助動詞 didn't，後面沿用 did 進行倒裝 (Neither did I)。" },
+      { c: 6, q: "Teacher: Few students understand this difficult math concept, ____?\nStudent: It's really hard. Could you explain it again?", o: ["do they", "don't they", "did they", "didn't they"], a: 0, e: "Few (幾乎沒有) 是隱性否定字，前半為否定，後接肯定 do they? (students 複數用 they)。" },
+      { c: 6, q: "Lisa: I'm the best runner in our class, ____?\nCoach: Yes, your record is unbeatable so far.", o: ["am not I", "aren't I", "am I", "are I"], a: 1, e: "I am ... 的否定附加問句，為發音方便，英文習慣上固定使用 aren't I?。" },
       { c: 6, q: "You have to finish it today, ____?", o: ["haven't you", "don't you", "do you", "have you"], a: 1, e: "have to (必須) 視為一般動詞片語，否定或附加問句需用助動詞 don't。" },
       { c: 6, q: "She rarely goes to the movies, ____?", o: ["does she", "doesn't she", "is she", "isn't she"], a: 0, e: "rarely (罕見地) 是隱性否定字，前半句為否定，附加問句需用肯定 does she。" },
       { c: 6, q: "Let us go to the park, ____?", o: ["shall we", "will you", "do we", "don't we"], a: 1, e: "Let us (允許我們...) 的附加問句用 will you?；Let's (讓我們一起...) 才用 shall we?。" },
@@ -512,7 +365,27 @@
       { c: 6, q: "Let's have a picnic this weekend, ____?", o: ["will you", "shall we", "do we", "don't we"], a: 1, e: "Let's 開頭的祈使句，附加問句固定用 shall we?。" },
       { c: 6, q: "There is little milk in the fridge, ____?", o: ["is there", "isn't there", "is it", "isn't it"], a: 0, e: "little (幾乎沒有) 是否定字，前半為否定，後用肯定 is there?。" },
 
-      // 擴充：7. 代名詞與介系詞
+      // 8. 代名詞與介系詞
+      { c: 7, q: "Customer: I don't like this black shirt. Do you have ____ one in white?\nClerk: Yes, please wait a moment. I'll get it for you.", o: ["another", "other", "the other", "others"], a: 0, e: "情境對話題。another 表示三者或以上中的「任意另一個」，顧客想看別的(沒有特定是哪一件)白襯衫。" },
+      { c: 7, q: "Teacher: Look at the picture. There are three apples on the table. One is red, another is green, and ____ is yellow.", o: ["other", "the other", "others", "another"], a: 1, e: "限定範圍(三顆蘋果)中的「最後一個」，必須加上定冠詞 the (the other)。" },
+      { c: 7, q: "Interviewer: Could you tell our readers when you were born?\nActor: Sure. I was born ____ May, 1990 in a beautiful small town.", o: ["in", "on", "at", "of"], a: 0, e: "在某個「月份、年份、季節」，介系詞一律使用 in (in May)。" },
+      { c: 7, q: "Secretary: When will the general manager arrive?\nAssistant: The meeting starts ____ 9:00 AM, so he should be here very soon.", o: ["in", "on", "at", "for"], a: 2, e: "明確的「時鐘時間點」，介系詞使用 at (at 9:00 AM)。" },
+      { c: 7, q: "Tourist: Excuse me, how can I get to the national museum?\nGuide: You can go there ____ train. It's very fast and convenient.", o: ["in", "on", "by", "with"], a: 2, e: "搭乘交通工具，介系詞使用 by (by train/bus/car/boat)。" },
+      { c: 7, q: "Mom: Are you going to ride your bike to school today?\nSon: No, it's raining outside. I think I will go to school ____ foot with my umbrella.", o: ["in", "by", "with", "on"], a: 3, e: "步行 (on foot) 是固定用法，不可用 by walk 或 by foot。" },
+      { c: 7, q: "Teacher: What are your classmates doing during the break?\nStudent: Some of them are playing basketball outside, and ____ are reading books in the library.", o: ["another", "other", "the other", "others"], a: 3, e: "Some... others... (一些人... 其他一些人...)，用於無特定總數範圍的群體分類。" },
+      { c: 7, q: "Brother: Look ____ the sky! It's getting so dark.\nSister: Let's hurry up and go home before it starts to rain.", o: ["in", "on", "at", "to"], a: 2, e: "look at + 目標 (注視著...)。" },
+      { c: 7, q: "Teacher: Why do you want to be a doctor when you grow up?\nStudent: Because ____ of my parents are doctors, and they help a lot of people.", o: ["All", "Both", "Each", "Two"], a: 1, e: "Both 指「兩者都...」(雙親只有兩位)。All 用於三者或以上。" },
+      { c: 7, q: "Reporter: Why do so many foreign tourists love visiting Taiwan?\nChef: Taiwan is famous ____ its delicious street food and friendly people.", o: ["as", "for", "to", "by"], a: 1, e: "be famous for (因為...特質/事物而聞名)。be famous as 是「作為...身分而聞名」。" },
+      { c: 7, q: "Husband: Honey, what are you doing under the sofa?\nWife: I am looking ____ my car keys. I can't find them anywhere.", o: ["at", "for", "after", "into"], a: 1, e: "look for (尋找)。look after 是照顧，look into 是調查。" },
+      { c: 7, q: "Student: Thank you so much ____ your help with my math homework. I finally understand it.\nTeacher: You're very welcome.", o: ["for", "to", "with", "of"], a: 0, e: "Thank someone for something (因為某事而感謝某人)。" },
+      { c: 7, q: "Grandson: Wow! This big box is full ____ old toys.\nGrandma: Yes, those were your father's favorite toys when he was little.", o: ["with", "of", "in", "by"], a: 1, e: "be full of (充滿著...) = be filled with。" },
+      { c: 7, q: "Child: Can I pet that big dog over there?\nParent: No, don't go near it. Aren't you afraid ____ dogs?", o: ["for", "with", "of", "at"], a: 2, e: "be afraid of (害怕...) 為固定介系詞搭配。" },
+      { c: 7, q: "Customer: This new smartphone is quite different ____ the old model I bought last year.\nClerk: Yes, it has a much better camera and battery life.", o: ["with", "from", "to", "than"], a: 1, e: "be different from (與...不同)。" },
+      { c: 7, q: "Student: We are all looking forward ____ the summer vacation next month.\nTeacher: I know, but you have to pass the final exams first.", o: ["in", "on", "to", "at"], a: 2, e: "look forward to (期待...)，此處的 to 為介系詞。" },
+      { c: 7, q: "Coach: Jason is very good ____ playing tennis. He might win the championship this year.\nPlayer: Yes, he practices very hard every single day.", o: ["in", "on", "at", "with"], a: 2, e: "be good at + N/V-ing (擅長於...)。" },
+      { c: 7, q: "Mom: Don't worry ____ your grades too much. Just do your best.\nSon: Thanks, Mom. I'll study harder for the next test.", o: ["for", "with", "about", "in"], a: 2, e: "worry about (擔心...) 為固定搭配。" },
+      { c: 7, q: "Traveler: I checked the weather forecast. The weather in Taipei is usually hotter than ____ in Tokyo during summer.\nFriend: Then we should pack more T-shirts.", o: ["it", "this", "that", "those"], a: 2, e: "會考必考代名詞！為了避免重複，用 that 代替前面提過的單數或不可數名詞 (the weather)。" },
+      { c: 7, q: "Sister: I bought a new dress, but I still think his shoes are more expensive than ____ of his brother.\nBrother: Well, they are limited edition.", o: ["that", "those", "these", "ones"], a: 1, e: "用 those 代替前面提過的複數名詞 (shoes)。" },
       { c: 7, q: "____ of the two brothers are doctors.", o: ["All", "Both", "Some", "Most"], a: 1, e: "兩者都...，代名詞用 Both。All 用於三者或以上。" },
       { c: 7, q: "____ of the students in my class wear glasses.", o: ["Much", "Most", "Every", "Another"], a: 1, e: "Most of the + 複數名詞 (大部分的...)。Every 不能加 of。" },
       { c: 7, q: "I have two pens. One is red, and ____ is blue.", o: ["another", "other", "the other", "others"], a: 2, e: "限定兩者之中的另一個，用 the other。" },
@@ -544,7 +417,27 @@
       { c: 7, q: "There is a bridge ____ the river.", o: ["above", "over", "on", "in"], a: 1, e: "over 表「在...正上方」或「橫越...上方」(如橋橫跨河流)。" },
       { c: 7, q: "The dog is hiding ____ the sofa.", o: ["behind", "after", "back", "rear"], a: 0, e: "behind 表在空間上的「在...的後面」。" },
 
-      // 擴充：8. 比較級與最高級
+      // 9. 比較級與最高級
+      { c: 8, q: "Student A: How was the math test this morning?\nStudent B: It was ____ more difficult than I thought. I couldn't even finish the last page.", o: ["very", "too", "much", "so"], a: 2, e: "修飾比較級 (more difficult) 可以用 much/even/a lot/far/a little。very 和 too 只能修飾原級。" },
+      { c: 8, q: "Teacher: Look at the twins standing over there. Do you know them?\nMom: Yes, Mary is ____ of the two girls.", o: ["taller", "the taller", "tallest", "the tallest"], a: 1, e: "Of the two... (兩者之中) 是特殊句型，比較級前必須加定冠詞 the (the taller)。" },
+      { c: 8, q: "Guide: Welcome to our city tour! Tokyo is one of ____ cities in the world, with millions of people living here.", o: ["large", "larger", "largest", "the largest"], a: 3, e: "one of the + 最高級 + 複數名詞 (最...的...之一)。" },
+      { c: 8, q: "Grandpa: Remember, my boy. The ____ you study now, the better grades you will get in the future.\nGrandson: I will keep that in mind.", o: ["hard", "harder", "hardest", "more hard"], a: 1, e: "The 比較級..., the 比較級... (越...，就越...)。" },
+      { c: 8, q: "Friend A: The weather is getting hotter and ____. We should really turn on the air conditioner.\nFriend B: Good idea. I'm sweating.", o: ["hot", "hotter", "hottest", "more hot"], a: 1, e: "比較級 and 比較級，表「越來越...」。" },
+      { c: 8, q: "Customer: Which smartphone is ____, the black one or the white one?\nClerk: The black one has more storage, so it costs 2,000 dollars more.", o: ["expensive", "more expensive", "most expensive", "the most expensive"], a: 1, e: "兩者做比較 (Which is... A or B)，使用比較級 more expensive。" },
+      { c: 8, q: "Doctor: You should exercise more. Health is ____ important than wealth.\nPatient: You are completely right. I'll start jogging tomorrow.", o: ["much", "more", "most", "the most"], a: 1, e: "than 提示比較級，多音節形容詞用 more important。" },
+      { c: 8, q: "Reviewer: I highly recommend this film. This is ____ movie I have ever seen in my life!\nFriend: Wow, I definitely have to watch it.", o: ["exciting", "more exciting", "most exciting", "the most exciting"], a: 3, e: "I have ever seen (我看過之中) 提示最高級範圍，用 the most exciting。" },
+      { c: 8, q: "Coach: John is incredible. He ran ____ of all the students in the relay race today.\nPlayer: We are so lucky to have him on our team.", o: ["fast", "faster", "fastest", "the fastest"], a: 3, e: "of all 提示最高級，副詞最高級 the fastest (the 常常可省略，但有 the 最完整)。" },
+      { c: 8, q: "Doctor: To stay healthy, you should eat ____ fast food and eat more fresh vegetables.\nPatient: I'll try to change my diet.", o: ["few", "fewer", "little", "less"], a: 3, e: "food 是不可數名詞，little 的比較級是 less (較少的)。" },
+      { c: 8, q: "Librarian: It's so quiet today. There are ____ students in the library today than yesterday because of the heavy rain.", o: ["less", "little", "few", "fewer"], a: 3, e: "students 是可數名詞，few 的比較級是 fewer。" },
+      { c: 8, q: "Customer: This sports car is ____ more expensive than that one. Can you give me a discount?\nClerk: I can talk to my manager.", o: ["a little", "very", "too", "so"], a: 0, e: "a little (一點點) 可以用來修飾比較級 (more expensive)。" },
+      { c: 8, q: "Student A: My school bag is not as ____ as yours. What do you have inside?\nStudent B: Just some books and a heavy laptop.", o: ["heavy", "heavier", "heaviest", "heavily"], a: 0, e: "not as + 原級 + as (不如...一樣)。be 動詞後接形容詞 heavy。" },
+      { c: 8, q: "Mom: He is the ____ boy in our family, so he always takes good care of his younger brothers and sisters.", o: ["older", "oldest", "elder", "eldest"], a: 1, e: "最高級 the oldest (年紀最大的)。(eldest 亦可，但在國中選擇題中常考 oldest)。" },
+      { c: 8, q: "Teacher: Mary is prettier than ____ in her class. She could be a model in the future.\nPrincipal: I agree.", o: ["any girl", "any other girl", "all the girls", "other girls"], a: 1, e: "會考必考！比較級 + than + any other + 單數名詞 (比其他任何一個都...)，用來表達最高級的語意(必須把自己排除)。" },
+      { c: 8, q: "Weather forecaster: Please stay indoors. The weather today is even ____ than yesterday. The typhoon is coming.", o: ["bad", "badder", "worse", "worst"], a: 2, e: "even 修飾比較級，bad 的比較級是不規則的 worse。" },
+      { c: 8, q: "Student: Of all the subjects, I like history ____ because the stories of the past are so fascinating.\nTeacher: That's great to hear.", o: ["good", "better", "best", "the best"], a: 2, e: "Of all... 提示最高級，副詞 well 的最高級 best (the 可省略)。" },
+      { c: 8, q: "Manager: Your marketing idea sounds ____ than mine. Let's follow your plan for the next project.\nEmployee: Thank you, boss.", o: ["good", "well", "better", "best"], a: 2, e: "連綴動詞 sounds 後接形容詞的比較級 better (good 的比較級)。" },
+      { c: 8, q: "Climber: Mount Everest is ____ mountain in the world. It's my lifelong dream to climb it.\nFriend: Be careful, it's very dangerous.", o: ["high", "higher", "highest", "the highest"], a: 3, e: "最高級 the highest。" },
+      { c: 8, q: "Boss: Please speak a little ____. I can't hear you clearly from the back of the meeting room.\nEmployee: Sorry, I will.", o: ["loud", "loudly", "louder", "loudest"], a: 2, e: "a little 修飾比較級 louder (大聲一點)。" },
       { c: 8, q: "This problem is ____ difficult than that one.", o: ["very", "too", "much", "more"], a: 2, e: "修飾比較級 (more difficult) 可以用 much/even/a lot/far/a little。very 和 too 不能修飾比較級。" },
       { c: 8, q: "She is ____ of the two girls.", o: ["taller", "the taller", "tallest", "the tallest"], a: 1, e: "Of the two... (兩者之中) 是特殊句型，比較級前必須加 the (the taller)。" },
       { c: 8, q: "He is ____ student in our class.", o: ["good", "better", "best", "the best"], a: 3, e: "in our class 表群體範圍，用最高級 the best。" },
@@ -576,7 +469,27 @@
       { c: 8, q: "This puzzle is ____ than I thought.", o: ["much easy", "more easy", "much easier", "very easier"], a: 2, e: "much 修飾比較級 easier。" },
       { c: 8, q: "Today is ____ day of my life!", o: ["happy", "happier", "happiest", "the happiest"], a: 3, e: "最高級 the happiest。" },
 
-      // 擴充：9. 動名詞與不定詞
+      // 10. 動名詞與不定詞
+      { c: 9, q: "Doctor: You cough a lot recently. You should stop ____ for your own health.\nPatient: I know. I will try my best to quit.", o: ["smoke", "smoking", "to smoke", "smoked"], a: 1, e: "stop V-ing 表「停止正在做/習慣做的動作」(戒菸)。stop to V 是「停下來去做另一件事」。" },
+      { c: 9, q: "Mom: Did you turn off the TV in the living room?\nSon: Yes, I clearly remember ____ it off before I went to bed last night.", o: ["turn off", "turning off", "to turn off", "turned off"], a: 1, e: "remember V-ing 表「記得曾經做過... (事情已發生)」。" },
+      { c: 9, q: "Boss: We are looking forward to ____ from you soon about the new marketing project.\nClient: I will email you the details tomorrow.", o: ["hear", "hearing", "to hear", "heard"], a: 1, e: "look forward to + V-ing (期待...)。此處的 to 是介系詞，後面必須接動名詞。" },
+      { c: 9, q: "Old Man: Thank you for carrying the heavy bags for me.\nBoy: No problem! It is nice ____ you to say that.", o: ["for", "of", "to", "with"], a: 1, e: "It is + 人的特質形容詞 (nice/kind/smart) + of + 人 + to V。" },
+      { c: 9, q: "Teacher: It is very important ____ students to learn how to manage their time well.\nPrincipal: I couldn't agree more.", o: ["for", "of", "to", "with"], a: 0, e: "It is + 事物特質形容詞 (important/easy/hard) + for + 人 + to V。" },
+      { c: 9, q: "Daughter: The box is too heavy for me ____. Can you help me, Dad?\nDad: Sure, let me get it for you.", o: ["carry", "carrying", "to carry", "carried"], a: 2, e: "too... to... (太...而不能...)，後接不定詞 to V。" },
+      { c: 9, q: "Customer: Would you mind ____ the window? It's a bit cold in here.\nWaiter: Of course not. I'll do it right away.", o: ["close", "closing", "to close", "closed"], a: 1, e: "mind (介意) 後面固定接 V-ing 動名詞。" },
+      { c: 9, q: "Friend A: What are you going to do this summer vacation?\nFriend B: We plan ____ to Japan for a long family trip.", o: ["go", "going", "to go", "went"], a: 2, e: "plan (計畫) 後面接不定詞 to V。" },
+      { c: 9, q: "Teacher: Remember ____ all your homework before you go out to play video games.\nStudent: I will, Mr. Davis. I'm almost done.", o: ["finish", "finishing", "to finish", "finished"], a: 2, e: "remember to V (記得要去... / 事情還沒做)。" },
+      { c: 9, q: "Friend A: Have you decided what ____ for your mom's birthday?\nFriend B: I'm thinking about buying her a beautiful necklace.", o: ["buy", "buying", "to buy", "bought"], a: 2, e: "疑問詞 (what/how/where) + to V 可當作名詞片語，作為 decided 的受詞。" },
+      { c: 9, q: "Sister: I enjoy ____ to pop music in my free time. It helps me relax after a busy day.\nBrother: I prefer classical music.", o: ["listen", "listening", "to listen", "listened"], a: 1, e: "enjoy (享受) 後面固定接 V-ing 動名詞。" },
+      { c: 9, q: "Moviegoer: Those guys behind us kept ____ during the entire movie, which was very annoying.\nFriend: We should have told them to be quiet.", o: ["talk", "talking", "to talk", "talked"], a: 1, e: "keep + V-ing (持續做某事)。" },
+      { c: 9, q: "Tourist: The old man was out of breath, so he stopped ____ a rest under the big tree.\nGuide: Let's wait for him.", o: ["take", "taking", "to take", "took"], a: 2, e: "stop to V (停下原本的動作，去從事另一個動作)。停下來去休息。" },
+      { c: 9, q: "Mom: Don't forget ____ your umbrella. The weather forecast says it will rain heavily this afternoon.\nSon: Thanks for reminding me.", o: ["bring", "bringing", "to bring", "brought"], a: 2, e: "forget to V (忘記要去... / 事情未做)。" },
+      { c: 9, q: "Friend A: We had so much fun ____ basketball at the park yesterday.\nFriend B: Yeah, we should definitely do it again next week.", o: ["play", "playing", "to play", "played"], a: 1, e: "have fun + V-ing (做...很開心) 是一種固定句型。" },
+      { c: 9, q: "Student: It took me three days ____ the science report. It was so complicated.\nTeacher: Your hard work will definitely pay off.", o: ["finish", "finishing", "to finish", "finished"], a: 2, e: "It takes + 人 + 時間 + to V。" },
+      { c: 9, q: "Friend A: How about ____ a movie tonight after dinner?\nFriend B: Sounds like a great idea! What's playing?", o: ["watch", "watching", "to watch", "watched"], a: 1, e: "about 是介系詞，後面必須接動名詞 V-ing。" },
+      { c: 9, q: "Son: I am afraid of ____ mistakes on the final exam. I'm so nervous.\nMom: Just prepare well and trust yourself. You can do it.", o: ["make", "making", "to make", "made"], a: 1, e: "of 是介系詞，後面必須接動名詞 V-ing。" },
+      { c: 9, q: "Detective: The suspect left the building quickly without ____ a word to anyone.\nOfficer: That makes him very suspicious.", o: ["say", "saying", "to say", "said"], a: 1, e: "without 是介系詞，後面必須接動名詞 V-ing。" },
+      { c: 9, q: "Principal: Please tell the students not ____ late again for the morning assembly.\nTeacher: I will make an announcement in class today.", o: ["be", "being", "to be", "is"], a: 2, e: "tell sb to V (叫某人去做...)，否定為 tell sb not to V。" },
       { c: 9, q: "He is used to ____ up early.", o: ["wake", "waking", "woke", "woken"], a: 1, e: "be used to + V-ing (習慣於...)。此處的 to 是介系詞。" },
       { c: 9, q: "She used to ____ a lot of coffee, but now she drinks tea.", o: ["drink", "drinking", "drank", "drunk"], a: 0, e: "used to + 原形動詞 (過去習慣...)。" },
       { c: 9, q: "I am looking forward to ____ from you soon.", o: ["hear", "hearing", "heard", "be heard"], a: 1, e: "look forward to + V-ing (期待...)。此處的 to 是介系詞。" },
@@ -623,8 +536,8 @@
         let quizSet = [];
         if (categoryIndex === 'all') {
           const shuffled = [...RAW_QUESTIONS].sort(() => 0.5 - Math.random());
-          quizSet = shuffled.slice(0, 20);
-          setSelectedCategoryTitle("綜合隨機特訓 (20題)");
+          quizSet = shuffled.slice(0, 25);
+          setSelectedCategoryTitle("綜合隨機特訓 (25題)");
         } else {
           quizSet = RAW_QUESTIONS.filter(q => q.c === categoryIndex);
           setSelectedCategoryTitle(`${CATEGORIES[categoryIndex]} 特訓`);
@@ -687,9 +600,9 @@
                   className="col-span-1 md:col-span-2 lg:col-span-3 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl p-6 text-white cursor-pointer shadow-lg hover:shadow-xl transition-transform hover:-translate-y-1"
                 >
                   <h2 className="text-2xl font-bold mb-2 flex items-center gap-2">
-                    <IconAward size={28} /> 綜合隨機測驗 (20題)
+                    <IconAward size={28} /> 綜合隨機測驗 (25題)
                   </h2>
-                  <p className="opacity-90">從所有單元中隨機挑選 20 題，檢驗你的總體文法實力（題目皆參考歷屆會考與指標國中段考題）！</p>
+                  <p className="opacity-90">從所有單元中隨機挑選 25 題（每題 4 分，滿分 100 分），測驗並統計你的弱點單元！</p>
                 </div>
 
                 {CATEGORIES.map((cat, idx) => (
@@ -742,7 +655,7 @@
                 <span className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 block">
                   {CATEGORIES[currentQ.c]}
                 </span>
-                <h2 className="text-xl md:text-2xl font-bold text-slate-800 mb-8 leading-relaxed">
+                <h2 className="text-xl md:text-2xl font-bold text-slate-800 mb-8 leading-relaxed whitespace-pre-line">
                   {currentQ.q}
                 </h2>
 
@@ -805,6 +718,13 @@
         const percentage = Math.round((score / currentQuestions.length) * 100);
         const incorrectAnswers = userHistory.filter(h => h.userAnswer !== h.correctAnswer);
 
+        // 統計錯題分布
+        const mistakeStats = incorrectAnswers.reduce((acc, curr) => {
+          acc[curr.categoryName] = (acc[curr.categoryName] || 0) + 1;
+          return acc;
+        }, {});
+        const sortedMistakeStats = Object.entries(mistakeStats).sort((a, b) => b[1] - a[1]);
+
         return (
           <div className="min-h-screen p-4 py-10 md:py-16">
             <div className="max-w-3xl mx-auto">
@@ -824,12 +744,32 @@
                       />
                     </svg>
                     <div className="absolute flex flex-col items-center justify-center text-4xl font-black text-slate-700">
-                      {percentage}<span className="text-lg text-slate-400">%</span>
+                      {percentage}<span className="text-lg text-slate-400">分</span>
                     </div>
                   </div>
                   <p className="text-xl font-medium text-slate-600 mb-8">
                     答對 {score} 題 / 共 {currentQuestions.length} 題
                   </p>
+
+                  {/* 弱點分析：統計錯題分布 */}
+                  {incorrectAnswers.length > 0 && (
+                    <div className="mb-8 bg-amber-50 rounded-2xl p-6 border border-amber-200 text-left">
+                      <h3 className="text-lg font-bold text-amber-800 mb-4 flex items-center gap-2">
+                        <IconAlertCircle size={24} /> 弱點分析：錯題單元分布
+                      </h3>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        {sortedMistakeStats.map(([cat, count], idx) => (
+                          <div key={idx} className="flex justify-between items-center bg-white p-3 rounded-xl border border-amber-100 shadow-sm">
+                            <span className="font-medium text-slate-700">{cat}</span>
+                            <span className="bg-rose-100 text-rose-700 font-bold px-3 py-1 rounded-full text-sm">
+                              錯 {count} 題
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                      <p className="text-sm text-amber-700 mt-4">💡 建議可以針對上述單元，回到首頁進行該單元的特訓加強喔！</p>
+                    </div>
+                  )}
                   
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <button 
